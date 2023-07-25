@@ -31,8 +31,9 @@
 | created_at    | datetime     | not null                                         |
 | updated_at    | datetime     | not null                                         |
 ----------------------------------------------------------------------------------|
-* `user_id ` references `users ` table
 ```
+* `user_id ` references `users ` table
+
 ## `comments`
 ```
 ----------------------------------------------------------------------------------|
@@ -45,9 +46,10 @@
 | created_at    | datetime     | not null                                         |
 | updated_at    | datetime     | not null                                         |
 ----------------------------------------------------------------------------------|
+```
 * `user_id ` references `users ` table
 * `post_id  ` references `posts  ` table
-```
+
 
 ## `likes`
 ```
@@ -58,9 +60,10 @@
 | user_id       | integer      | not null, indexed, foreign key (references User) |
 | post_id       | integer      | not null, indexed, foreign key (references Post) |
 ----------------------------------------------------------------------------------|
+```
 * `user_id ` references `users ` table
 * `post_id  ` references `posts  ` table
-```
+
 
 ## `follows`
 ```
@@ -71,9 +74,10 @@
 | follower_id   | integer      | not null, indexed, foreign key (references User) |
 | followed_id   | integer      | not null, indexed, foreign key (references User) |
 ----------------------------------------------------------------------------------|
+```
 * `follower_id ` references `users ` table
 * `followed_id ` references `users ` table
-```
+
 
 ## `medias`
 ```
@@ -87,5 +91,5 @@
 | created_at  | datetime  | not null                                                  |
 | updated_at  | datetime  | not null                                                  |
 --------------------------------------------------------------------------------------|
-* `post_id  ` references `posts  ` table
 ```
+* `post_id  ` references `posts  ` table
