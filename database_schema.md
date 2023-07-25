@@ -1,23 +1,32 @@
 
 # **Database Schema**
+
+![dataschema][def]
+
+
+[def]:./images/tumblr.png
+
+
 ## `users`---this would be changed cuz we will get real features from appAcademy
 ```
 ---------------------------------------------------------------------------|
-| column name   | data type    | details                                   |
+| column name    | data type    | details                                  |
 ---------------------------------------------------------------------------|
-| id            | integer      | not null, primary key                     |
-| username      | string       | not null, unique                          |
-| password      | string       | not null (hashed)                         |
-| email         | string       | not null, indexed, unique                 |
+| id             | integer      | not null, primary key                    |
+| username       | string       | not null, unique                         |
+| hashed_password| string       | not null (hashed)                        |
+| email          | string       | not null, indexed, unique                |
+| created_at     | datetime     | not null                                 |
+| updated_at     | datetime     | not null                                 |
+---------------------------------------------------------------------------|
+```
+* `Relationship`
 | posts         | relationship | one-to-many with Post                     |
 | comments      | relationship | one-to-many with Comment                  |
 | likes         | relationship | one-to-many with Like                     |
 | followers     | relationship | many-to-many with User (self-referential) |
 | following     | relationship | many-to-many with User (self-referential) |
-| created_at    | datetime     | not null                                  |
-| updated_at    | datetime     | not null                                  |
----------------------------------------------------------------------------|
-```
+
 ## `posts`
 ```
 ----------------------------------------------------------------------------------|
@@ -26,13 +35,15 @@
 | id            | integer      | not null, primary key                            |
 | content       | text         | not null                                         |
 | user_id       | integer      | not null, indexed, foreign key (references User) |
-| comments      | relationship | one-to-many with Comment                         |
-| likes         | relationship | one-to-many with Like                            |
 | created_at    | datetime     | not null                                         |
 | updated_at    | datetime     | not null                                         |
 ----------------------------------------------------------------------------------|
 ```
 * `user_id ` references `users ` table
+
+* `Relationship`
+| comments      | relationship | one-to-many with Comment                         |
+| likes         | relationship | one-to-many with Like                            |
 
 ## `comments`
 ```
@@ -62,7 +73,7 @@
 ----------------------------------------------------------------------------------|
 ```
 * `user_id ` references `users ` table
-* `post_id  ` references `posts  ` table
+* `post_id  ` references `posts ` table
 
 
 ## `follows`
@@ -92,4 +103,4 @@
 | updated_at  | datetime  | not null                                                  |
 --------------------------------------------------------------------------------------|
 ```
-* `post_id  ` references `posts  ` table
+* `post_id  ` references `posts ` table
