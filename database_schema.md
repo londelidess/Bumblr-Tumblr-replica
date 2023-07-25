@@ -1,6 +1,6 @@
 
 # **Database Schema**
-## `users`---this would be change cuz we will get real features from appAcademy
+## `users`---this would be changed cuz we will get real features from appAcademy
 
 ---------------------------------------------------------------------------|
 | column name   | data type    | details                                   |
