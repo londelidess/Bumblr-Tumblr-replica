@@ -13,16 +13,16 @@ TumblrClone, a Tumblr replica, is a platform where users can share posts, engage
 ## 2. Posts
 
 * Users can create, update, and delete posts.
-* Posts can contain text, images, or videos.
+* Posts can contain text or images.
 * Each post displays its author, content, timestamp, and associated likes.
 * Users can navigate to a detailed view of a post which includes its comments.
-* The main feed displays posts from all users or just from those a user follows, depending on the design.
+* The main feed displays posts from all users or just from those a user follows, by changing tab.
 
 ## 3. Comments
 
 * Users can comment on any post.
 * Users can update or delete their own comments.
-* Each comment displays its author, content, and timestamp.
+* Each comment displays its author and content.
 * Comments are displayed beneath the post they are associated with.
 
 ## 4. Likes
@@ -36,9 +36,5 @@ TumblrClone, a Tumblr replica, is a platform where users can share posts, engage
 * Users can follow and unfollow other users.
 * Users have a follower and following count on their profile.
 * The main feed can be filtered to show posts only from followed users.
-
-## 6. Profile
-
-* Each user has a profile page.
-* The profile displays the user's posts, followers, and those they are following.
-* Users can update their profile information, such as their username, bio, and profile picture.
+ .
+  
