@@ -1,29 +1,3 @@
-# Feature Scoping Guide
-
-Feature scoping is a phase in the development process where you prioritize and decide which features to include in the Minimum Viable Product (MVP) and which to consider for future development (stretch goals).
-
-## Steps to Write a Feature Scope:
-
-### 1. **List All Possible Features**:
-   - Brainstorm all potential features for your application.
-
-### 2. **Prioritize**:
-   - Rank features based on core functionality, user value, and development time.
-
-### 3. **Define Your MVP**:
-   - Select essential features for launch.
-
-### 4. **Stretch Goals**:
-   - List features for future implementation.
-
-### 5. **Document and Share**:
-   - Clearly document and share your feature scope for feedback.
-
-### 6. **Iterate**:
-   - Adjust your scope as needed during development.
-
----
-
 # Feature Scope for a Hypothetical Tumblr Clone:
 
 ## MVP Features:
