@@ -43,73 +43,80 @@
 ## Posts
 
 * As a user, I want to view all available posts.
-  - When I send a `GET` request to `/posts`:
+  - When I'm on the `/`:
     - I expect to receive a list of all posts in the system.
 
-* As a user, I want to create a new post to share my content.
-  - When I send a `POST` request to `/posts` with my post content:
+* As a logged in user, I want to be able to create a new post to share my content.
+  - I can write and submit a post, when I'm on the `/new-post` page :
     - I expect my post to be saved and viewable by others.
 
-* As a user, I want to update my posts when I need to make changes or corrections.
-  - When I send a `PUT` request to `/posts/<post_id>` with updated content:
-    - I expect the specified post to be updated with the new content.
+* As a logged in user, I want to update my posts when I need to make changes or corrections.
+  - When I'm on the `/post`, `/post/:id`, or `/users/:id/post` pages:
+    -  I can click "Edit" to make permanent changes to post that I have posted.
+      - So that I can fix any errors I make in my post.
 
-* As a user, I want the ability to delete my posts if I no longer want them to be available.
-  - When I send a `DELETE` request to `/posts/<post_id>`:
-    - I expect the specified post to be removed from the system.
+* As a logged in user, I want the ability to delete my posts if I no longer want them to be available.
+  - When I'm on the `/post`, `/post/:id`, or `/users/:id/post` pages:
+    - I can click "Delete" to permanently delete a post I have posted.
+      - So that when I realize I shouldn't have publicly said something, I can easily remove it.
 
 ---
 
 ## Comments
 
-* As a user, I want to view all comments on a post to see what others have said.
-  - When I send a `GET` request to `/posts/<post_id>/comments`:
-    - I expect to receive a list of all comments related to that post.
+* As a user, I want to view all comments related to a specific post.
+  - When I'm on the `/posts/<post_id>/comments` page:
+    - I expect to see a list of all comments associated with that post.
 
-* As a user, I want to comment on posts to share my thoughts and reactions.
-  - When I send a `POST` request to `/posts/<post_id>/comments` with my comment:
-    - I expect my comment to be saved under the specified post.
+* As a logged in user, I want to share my opinions by commenting on posts.
+  - When I'm on the `/posts/<post_id>/comments` page:
+    - I can write and submit my comment.
+      - I expect my comment to be added under the relevant post.
 
-* As a user, I want to update my comments if I need to clarify or correct something.
-  - When I send a `PUT` request to `/posts/<post_id>/comments/<comment_id>` with updated content:
-    - I expect the specified comment to be updated.
+* As a logged in user, I want the flexibility to modify my comments for clarity or to correct any mistakes.
+  - When I'm on the `/posts/<post_id>/comments/<comment_id>` page:
+    - I can click "Edit" to make permanent changes to a comment I have made.
+      - So that I can ensure my comment accurately reflects my thoughts.
 
-* As a user, I want to delete my comments if I change my mind or realize I said something inappropriate.
-  - When I send a `DELETE` request to `/posts/<post_id>/comments/<comment_id>`:
-    - I expect the specified comment to be removed from the post.
-
----
+* As a logged in user, I want the option to remove my comments if I reconsider my words or find them unsuitable.
+  - When I'm on the `/posts/<post_id>/comments/<comment_id>` page:
+    - I can click "Delete" to permanently remove a comment I have made.
+      - This allows me to retract any comment I regret or deem inappropriate.
 
 ## Likes
 
-* As a user, I want to see how many likes a post has received to gauge its popularity.
-  - When I send a `GET` request to `/posts/<post_id>/likes`:
-    - I expect to see a count or list of likes for that post.
+* As a user, I want to gauge the popularity of a post by viewing its likes.
+  - When I'm on the `/posts/<post_id>/likes` page:
+    - I expect to see a count or list of likes associated with that post.
 
-* As a user, I want to like posts that I find interesting or enjoyable.
-  - When I send a `POST` request to `/posts/<post_id>/likes`:
-    - I expect the post to have one more like and this action to be associated with my user account.
+* As a user, I want to express my appreciation for posts that resonate with me.
+  - When I'm on the `/posts/<post_id>` page:
+    - I can click "Like" to show my interest in the post.
+      - I expect the post's like count to increase by one and this action to be linked to my account.
 
-* As a user, I want the ability to retract my like if I change my mind.
-  - When I send a `DELETE` request to `/posts/<post_id>/likes`:
-    - I expect the like I gave to that post to be removed.
+* As a user, I want the freedom to reconsider and undo my likes.
+  - When I'm on the `/posts/<post_id>` page where I've previously liked a post:
+    - I can click "Unlike" to retract my like.
+      - I expect the post's like count to decrease by one.
 
 ---
 
 ## Follows
 
-* As a user, I want to see who I'm following to keep track of the accounts I'm interested in.
-  - When I send a `GET` request to `/users/<user_id>/following`:
-    - I expect to receive a list of all users I am currently following.
+* As a user, I want to oversee the accounts I've chosen to follow.
+  - When I'm on the `/users/<user_id>/following` page:
+    - I expect to see a list of all users I'm currently following.
 
-* As a user, I want to see who is following me to understand my audience or see if my friends are connected.
-  - When I send a `GET` request to `/users/<user_id>/followers`:
-    - I expect to receive a list of all users who are following me.
+* As a user, I want insight into my audience or to verify connections with friends.
+  - When I'm on the `/users/<user_id>/followers` page:
+    - I expect to see a list of all users who have chosen to follow me.
 
-* As a user, I want to follow other users to see their content in my feed.
-  - When I send a `POST` request to `/users/<user_id>/follow`:
-    - I expect to start following the specified user.
+* As a user, I want to connect with other users by following them and viewing their content.
+  - When I'm on the `/users/<user_id>` profile page:
+    - I can click "Follow" to start following that user.
+      - I expect to be added to the user's list of followers.
 
-* As a user, I want the option to unfollow users if I'm no longer interested in their content.
-  - When I send a `DELETE` request to `/users/<user_id>/unfollow`:
-    - I expect to stop following the specified user.
+* As a user, I want the flexibility to disconnect from users whose content no longer aligns with my interests.
+  - When I'm on the `/users/<user_id>` profile page where I'm already following the user:
+    - I can click "Unfollow" to cease following them.
+      - I expect to be removed from the user's list of followers.
