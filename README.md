@@ -1,1 +1,1 @@
-# group6-project
+# group-6-project
