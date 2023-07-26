@@ -1,1 +1,1 @@
-# docs-group-project
+# group6-project
