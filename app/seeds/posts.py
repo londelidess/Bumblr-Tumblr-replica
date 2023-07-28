@@ -4,17 +4,19 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
-    post1 = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    post1 = Post(
+        content="The Future of AI: Impact on Everyday Life", user_id=1)
+    post2 = Post(
+        content="Mindfulness Meditation: Cultivating Peace Amidst Chaos", user_id=1)
+    post3 = Post(
+        content="Unraveling the Mystique of Machu Picchu: A Journey Through Time", user_id=2)
+    post4 = Post(
+        content= "Savoring the Flavors of Thailand: A Culinary Adventure", user_id=2)
+    post5 = Post(
+        content= "Embracing Change: Navigating Life's Transformative Crossroads", user_id=3)
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.commit()
+    posts = [post1, post2, post3, post4, post5]
+    add_posts = [db.session.add(post) for post in posts]
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
@@ -25,8 +27,8 @@ def seed_posts():
 # it will reset the primary keys for you as well.
 def undo_posts():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM posts"))
         
     db.session.commit()
