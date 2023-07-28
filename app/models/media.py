@@ -11,10 +11,8 @@ class Media(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     media_type = db.Column(db.String, nullable=False)
     media_url = db.Column(db.String, nullable=False)
 
     post = db.relationship('Post', back_populates='medias')
-    # posts table
-    # medias = db.relationship('Media', backref='post', lazy=True)
