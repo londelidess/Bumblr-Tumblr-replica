@@ -1,9 +1,6 @@
 from .db import db, environment, SCHEMA
 from flask_sqlalchemy import SQLAlchemy
 
-
-db = SQLAlchemy()
-
 class Media(db.Model):
     __tablename__ = 'medias'
 
@@ -15,4 +12,4 @@ class Media(db.Model):
     media_type = db.Column(db.String, nullable=False)
     media_url = db.Column(db.String, nullable=False)
 
-    post = db.relationship('Post', back_populates='medias')
+    posts = db.relationship('Post', back_populates='medias')

@@ -19,6 +19,10 @@ def seed_posts():
     add_posts = [db.session.add(post) for post in posts]
 
 
+    db.session.commit()
+    return posts
+
+
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
 # removes all the data from the table, and RESET IDENTITY resets the auto
@@ -30,5 +34,5 @@ def undo_posts():
         db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM posts"))
-        
+
     db.session.commit()

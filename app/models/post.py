@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-from .likes import likes
+# from .likes import likes
 
 
 class Post(db.Model):
@@ -13,10 +13,10 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     #relationship attributes
-    user = db.relationship("User", back_populates="posts")
+    users = db.relationship("User", back_populates="posts")
     comments = db.relationship("Comment", back_populates="posts")
     likes = db.relationship("Like", back_populates="posts")
-    media = db.relationship("Media", back_populates="posts")
+    medias = db.relationship("Media", back_populates="posts")
 
     # post_likes = db.relationship(
     #     "User",

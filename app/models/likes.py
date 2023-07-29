@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-from sqlalchmy import relationship
+
 
 
 
@@ -15,8 +15,8 @@ class Like(db.Model):
 
 #Relationship
 
-    user = relationship("User", back_populates="likes")
-    post = relationship("Post", back_populates="likes")
+    users = db.relationship("User", back_populates="likes")
+    posts = db.relationship("Post", back_populates="likes")
 
     def to_dict(self):
         return {

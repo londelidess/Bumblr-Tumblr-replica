@@ -1,8 +1,8 @@
-from app.models import db, Comment
+from app.models import db, Comment, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-def seed_comment():
+def seed_comments():
 
     post1 = Comment(
         user_id= 1,
@@ -103,5 +103,9 @@ def seed_comment():
 
 
 def undo_comments():
-    db.session.execute(text("DELETE FROM comments"))
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM comments"))
+
     db.session.commit()
