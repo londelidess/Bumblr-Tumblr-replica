@@ -28,7 +28,7 @@ class Post(db.Model):
         return {
             "id": self.id,
             "content": self.content,
-            "user": self.user.to_dict_no_post(),
+            "user": self.users.to_dict(),
         }
 
     def to_dict_no_user(self):
