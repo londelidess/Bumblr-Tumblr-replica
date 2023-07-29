@@ -20,17 +20,12 @@ class User(db.Model, UserMixin):
     comments = db.relationship("Comment", back_populates="users")
     likes = db.relationship("Like", back_populates="users")
 
-    # followed_users = db.relationship("User",
-    #                                  secondary=follow,
-    #                                  back_populates="follower_users",
-    #                                  lazy="dynamic"
-    #                                  )
-
-    # follower_users = db.relationship("User",
-    #                                  secondary=follow,
-    #                                  back_populates=".",
-    #                                  lazy="dynamic"
-    #                                  )
+    # followed_users = db.relationship('User',
+    #                                  secondary=follower,
+    #                                  primaryjoin=(follower.c.follower_id == id),
+    #                                  secondaryjoin=(follower.c.followed_id == id),
+    #                                  back_populates='follower_users',
+    #                                  lazy='dynamic')
 
     followers = db.relationship(
         'User',
