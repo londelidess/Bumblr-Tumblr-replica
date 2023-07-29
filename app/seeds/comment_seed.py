@@ -31,7 +31,7 @@ def seed_comments():
     post4 = Comment(
         user_id=2,
         post_id=2,
-        content="test testes jlkasjdaslkjdlkqjwlekjqwklejqwklejqwklejqlkwj"
+        content="test testes jlkasjdaslkjdlkqjwlekjqwklejqwklejqwklejqlkwj",
         post_date= fake.date_between(start_date='-1y', end_date='today'),
     )
 
