@@ -13,3 +13,12 @@ class Media(db.Model):
     media_url = db.Column(db.String, nullable=False)
 
     posts = db.relationship('Post', back_populates='medias')
+
+    #dict
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "media_url": self.media_url,
+            "media_type": self.media_type,
+            "post_id": self.post_id
+    }

@@ -10,7 +10,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=False)
     content = db.Column(db.Text, nullable=False)
-
+    post_date = db.Column(db.Date, nullable=False)
 
     #Relationships
     users = db.relationship("User", back_populates="comments")
