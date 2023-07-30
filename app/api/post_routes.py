@@ -1,15 +1,15 @@
 from random import randint
 from datetime import date
-from flask import Blueprint, redirect, url_for, request
+from flask import Blueprint, request
 from ..forms.post_form import PostForm
-from ..models import Post, User, db
+from ..forms.media_form import MediaForm
+from ..models import Post, User, Media, db
 from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
-# from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
 post_routes = Blueprint("posts", __name__)
-
 
 # get all posts
 @post_routes.route("/all")
@@ -25,7 +25,6 @@ def all_posts():
 def current_posts():
   all_posts = Post.query.filter_by(user_id=current_user.id).all()
   response_posts = [post.to_dict() for post in all_posts]
-  print(response_posts)
   return {"posts": response_posts }
 
 # get one post by id
@@ -36,79 +35,78 @@ def get_post_by_id(id):
 
 # create a new post
 @post_routes.route("", methods=["POST"])
+@login_required
 def add_post():
   form = PostForm() 
-  form.user_id.choices = [ (user.id, user.username) for user in User.query.all()]
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-    selected_user = User.query.get(form.data["user_id"])
-    print(selected_user)
-
-    # image = form.data["image"]
-    # image.filename = get_unique_filename(image.filename)
-    # print(image)
-    # upload = upload_file_to_s3(image)
-    # print(upload)
-
-    # if "url" not in upload:
-    # return render_template("post_form.html", form=form, errors=[upload])
-
     new_post = Post(
       content = form.data["content"],
-      users = selected_user,
-    # post_date = date.today(),
+      users = current_user,
+      post_date = date.today()
     )
 
-    print(new_post)
     db.session.add(new_post)
     db.session.commit()
-    # return redirect(url_for("posts.all_posts"))
     return {"resPost": new_post.to_dict()}
-
+  
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+# update a post
+@post_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_post(id):
+  form = PostForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
 
-# @post_routes.route("/update/<int:id>", methods=["GET", "POST"])
-# def update_post(id):
-#   form = PostForm()
+  if form.validate_on_submit():
+    post_to_update = Post.query.get(id)
+    if not post_to_update:
+      return {"errors": f"post with id {id} does not exist"}
+    post_to_update.user = current_user
+    post_to_update.content = form.data["content"]
+    # post_to_update.post_date = date.today()
+    db.session.commit()
+    return {"updatedPost": post_to_update.to_dict()}
+  
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-#   form.user_id.choices = [ (user.id, user.username) for user in User.query.all()]
-#   print(form.user_id.choices)
+# delete a post
+@post_routes.route("/<int:id>", methods=["DELETE"])
+def delete_post(id):
+  post_to_delete = Post.query.get(id)
+  db.session.delete(post_to_delete)
+  db.session.commit()
+  return {"message": "Successfully deleted!"}
 
-#   if form.validate_on_submit():
-#     post_to_update = Post.query.get(id)
+# add a media to a post
+@post_routes.route("/<int:id>/medias", methods=["POST"])
+@login_required
+def add_media(id):
+  form = MediaForm() 
+  form['csrf_token'].data = request.cookies['csrf_token']
 
-#     selected_user = User.query.get(form.data["user_id"])
-#     post_to_update.user = selected_user
-#     post_to_update.caption = form.data["caption"]
-#     post_to_update.image = form.data["image"]
-#     post_to_update.post_date = date.today()
-#     db.session.commit()
-#     return redirect("/posts/all")
+  if form.validate_on_submit():
+    post1 = Post.query.get(id)
+    image = form.data["media_file"]
+    image.filename = get_unique_filename(image.filename)
+    print(image)
+    upload = upload_file_to_s3(image)
+    print(upload)
 
+    if "url" not in upload:
+      return {"error": "upload failed!"}
 
-#   elif form.errors:
-#     return render_template("post_form.html", form=form, errors=form.errors, type="update", id=id)
+    new_media = Media(
+      posts = post1,
+      media_url = upload["url"],
+      media_type = "image"
+    )
 
+    db.session.add(new_media)
+    db.session.commit()
+    return {"resPost": new_media.to_dict()}
 
-#   else:
-#     current_data = Post.query.get(id)
-#     form.process(obj=current_data)
-#     return render_template("post_form.html", form=form, errors=None, type="update", id=id)
-
-
-# @post_routes.route("/delete/<int:id>")
-# def delete_post(id):
-#   post_to_delete = Post.query.get(id)
-
-#   file_delete = remove_file_from_s3(post_to_delete.image)
-
-#   if file_delete is True:
-#     db.session.delete(post_to_delete)
-#     db.session.commit()
-#     return redirect("/posts/all")
-
-#   else:
-#     return "<h1>File delete errors</h1>"
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
