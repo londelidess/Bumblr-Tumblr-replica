@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-# from .likes import likes
+# from .likes import Like
 
 
 class Post(db.Model):
@@ -11,7 +11,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    # post_date = db.Column(db.Date, nullable=False)
+    post_date = db.Column(db.Date, nullable=False)
 
     #relationship attributes
     users = db.relationship("User", back_populates="posts")
@@ -29,17 +29,19 @@ class Post(db.Model):
         return {
             "id": self.id,
             "content": self.content,
-            # "postDate": self.post_date,
+            "postDate": self.post_date,
             "user": self.users.to_dict(),
             "medias": [media.to_dict() for media in self.medias],
-            "comments": [comment.to_dict() for comment in self.comments]
+            "comments": [comment.to_dict() for comment in self.comments],
+            "likes":[like.to_dict() for like in self.likes]
         }
 
     def to_dict_no_user(self):
         return {
             "id": self.id,
             "content": self.content,
-            # "postDate": self.post_date,
+            "postDate": self.post_date,
             "medias": self.medias.to_dict(),
-            "comments": [comment.to_dict() for comment in self.comments]
+            "comments": [comment.to_dict() for comment in self.comments],
+            "likes":[like.to_dict() for like in self.likes]
         }

@@ -2,7 +2,7 @@ from app.models import db, Media, Post, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-def seed_posts():
+def seed_medias():
     media1 = Media(post_id=1, media_type='image', media_url='https://a0.muscache.com/im/pictures/miso/Hosting-876366816069493464/original/a14921fb-2b11-4aa0-ad32-528556218296.jpeg')
     media2 = Media(post_id=2, media_type='image', media_url='https://a0.muscache.com/im/pictures/0d58f4c9-6ae2-430b-a1a3-9ab2b7b9f6e3.jpg')
     media3 = Media(post_id=3, media_type='image', media_url='https://a0.muscache.com/im/pictures/1bb7152f-a33d-4259-bbab-876a1a95e7e2.jpg')
@@ -18,7 +18,7 @@ def seed_posts():
     db.session.add(media6)
     db.session.commit()
 
-def undo_posts():
+def undo_medias():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.medias RESTART IDENTITY CASCADE;")
