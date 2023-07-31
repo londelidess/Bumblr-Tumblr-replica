@@ -6,6 +6,9 @@ like_routes = Blueprint('likes', __name__)
 
 @like_routes.route('/<int:post_id>',methods=['GET'])
 def get_post_likes(post_id):
+    '''
+    get post's likes
+    '''
     post_likes = Like.query.filter_by(post_id=post_id).all()
     response_post_likes=[like.to_dict() for like in post_likes]
     return {"likes":response_post_likes}
@@ -13,6 +16,9 @@ def get_post_likes(post_id):
 
 @like_routes.route('/<int:user_id>',methods=['GET'])
 def get_user_likes():
+    '''
+    get post's likes
+    '''
     user_likes = Like.query.filter_by(user_id=current_user.id).all()
     response_user_likes=[like.to_dict() for like in user_likes]
     return {"likes":response_user_likes}
@@ -20,6 +26,9 @@ def get_user_likes():
 @like_routes.route('/<int:postid>/likes',methods=['POST'])
 @login_required
 def add_like(post_id):
+    '''
+    add likes
+    '''
     auth = authenticate()
     if 'errors' in auth:
         return auth
@@ -40,6 +49,9 @@ def add_like(post_id):
 @like_routes.route('/<int:likeid>',methods=['DELETE'])
 @login_required
 def remove_like(likeid):
+    '''
+    unlike
+    '''
     like_delete = Like.query.get(likeid)
     if like_delete is None:
         return jsonify({'error': 'Like not found'}), 404
