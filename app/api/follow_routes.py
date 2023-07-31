@@ -24,7 +24,7 @@ def get_user_following(user_id):
     user = User.query.get(user_id)
     if not user:
         return {"error": ["User not found"]},404
-    following = current_user.following.all()
+    following = user.following.all()
     response_user_following=[user.to_dict() for user in following]
     return jsonify(response_user_following)
 
