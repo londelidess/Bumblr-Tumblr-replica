@@ -6,7 +6,7 @@ from ..forms.media_form import MediaForm
 from ..models import Post, User, Media, db
 from flask_login import login_required, current_user
 from .auth_routes import validation_errors_to_error_messages
-from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3, ALLOWED_EXTENSIONS
 
 
 post_routes = Blueprint("posts", __name__)
@@ -37,7 +37,7 @@ def get_post_by_id(id):
 @post_routes.route("", methods=["POST"])
 @login_required
 def add_post():
-  form = PostForm() 
+  form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
@@ -49,8 +49,8 @@ def add_post():
 
     db.session.add(new_post)
     db.session.commit()
-    return {"resPost": new_post.to_dict()}
-  
+    return {"posts": new_post.to_dict()}
+
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -70,7 +70,7 @@ def update_post(id):
     # post_to_update.post_date = date.today()
     db.session.commit()
     return {"updatedPost": post_to_update.to_dict()}
-  
+
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # delete a post
@@ -85,7 +85,7 @@ def delete_post(id):
 @post_routes.route("/<int:id>/medias", methods=["POST"])
 @login_required
 def add_media(id):
-  form = MediaForm() 
+  form = MediaForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
@@ -99,14 +99,22 @@ def add_media(id):
     if "url" not in upload:
       return {"error": "upload failed!"}
 
+    # media_type = "image"
+
+    if upload["url"].endswith("mp4"):
+      media_type = "video"
+    elif upload["url"].endswith("gif"):
+      media_type = "gif"
+    else: media_type = "image"
+
     new_media = Media(
       posts = post1,
       media_url = upload["url"],
-      media_type = "image"
+      media_type = media_type
     )
 
     db.session.add(new_media)
     db.session.commit()
-    return {"resPost": new_media.to_dict()}
+    return {"Media": new_media.to_dict()}
 
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
