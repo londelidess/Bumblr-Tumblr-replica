@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from flask_sqlalchemy import SQLAlchemy
 
 class Media(db.Model):
@@ -8,7 +8,7 @@ class Media(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable=False)
     media_type = db.Column(db.String, nullable=False)
     media_url = db.Column(db.String, nullable=False)
 

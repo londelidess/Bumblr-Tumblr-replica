@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 
@@ -10,8 +10,8 @@ class Like(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer,nullable=False, primary_key=True)
-    user_id  = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
-    post_id = db.Column(db.Integer,db.ForeignKey("posts.id"), nullable=False)
+    user_id  = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    post_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("posts.id")), nullable=False)
 
 #Relationship
 
