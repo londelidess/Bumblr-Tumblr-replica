@@ -1,7 +1,88 @@
-.profile-dropdown {
-  position: absolute;
-}
-
+/* Index */
 .hidden {
   display: none;
+}
+
+.logo {
+  width: 30px;
+  height: auto;
+
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.icon-item {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icon-item:last-child {
+  margin-right: 5px;
+}
+
+
+/* Profile Button */
+
+.profile-dropdown {
+  position: absolute;
+  transform: translateX(745%);
+  top: calc(4% + 5px);
+  left: 0;
+  min-width: 100px;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background-color: green;
+  border: none;
+  font-weight: bold;
+}
+
+.user-options.div {
+  color: black;
+}
+
+.user-like a,
+.user-follow a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.user-logout {
+  cursor: pointer;
+}
+
+
+.Cred {
+  background-color: green;
+  color: black;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  width: 60px;
+  height: 40px;
+  border: none;
+  font-weight: bold;
+}
+
+.Login-modal-button, .signup-modal-button {
+  background: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
 }

@@ -4,7 +4,7 @@ import './Modal.css';
 
 const ModalContext = React.createContext();
 
-export function ModalProvider({ children }) {
+export function ModalProvider({ children, className}) {
   const modalRef = useRef();
   const [modalContent, setModalContent] = useState(null);
   // callback function that will be called when modal is closing
@@ -33,7 +33,7 @@ export function ModalProvider({ children }) {
       <ModalContext.Provider value={contextValue}>
         {children}
       </ModalContext.Provider>
-      <div ref={modalRef} />
+      <div ref={modalRef} className={className} />
     </>
   );
 }
