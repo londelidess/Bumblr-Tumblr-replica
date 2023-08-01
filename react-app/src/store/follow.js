@@ -53,6 +53,7 @@ export const thunkAddFollow = (userId) => async (dispatch) => {
 
   if (response.ok) {
     console.log(data.res);
+    // dispatch(addFollow(data));
     dispatch(fetchLoggedInUserFollowing());
   } else {
     throw new Error(data.error || "Failed to follow the user.");
@@ -65,6 +66,7 @@ export const thunkRemoveFollow = (userId) => async (dispatch) => {
 
   if (response.ok) {
     console.log(data.res);
+    // dispatch(removeFollow(userId));
     dispatch(fetchLoggedInUserFollowing());
   } else {
     throw new Error(data.error || "Failed to unfollow the user.");
