@@ -1,0 +1,40 @@
+.post-index-item {
+    display: flex;
+    flex-direction: column;
+    place-self: center;
+    /* min-width: 340px;
+    max-width: 500px; */
+    max-height: auto;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.post-index-item-wrapper {
+    display: grid;
+    max-width: 570px ;
+    grid-template-columns: 1fr 10fr;
+    gap: 20px;
+}
+
+.post-index-item img {
+    max-width: 100%;
+    min-width: 90%;
+    max-height: auto;
+    min-height: 90%;
+}
+
+.postItem-title-bar {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+}
+
+.title-bar-username {
+    text-decoration: none;
+    padding-left: 18px;
+}
+
+.title-bar-follow {
+    text-decoration: none;
+    padding-left: 10px;
+}
