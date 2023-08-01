@@ -42,7 +42,7 @@ def add_like(post_id):
     if 'errors' in auth:
         return auth
 
-    already_liked = Like.query.filter_by(post_id=post_id, user_id=auth['id'])
+    already_liked = Like.query.filter_by(post_id=post_id, user_id=auth['id']).first()
     if already_liked:
         return {'error':'You already liked this post'}
 
