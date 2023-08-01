@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+
 
 // Constants
 const SET_ALL_POSTS = "posts/SET_POSTS";
@@ -34,7 +34,7 @@ const removePost = (postId) => ({
 });
 
 export const fetchAllPosts = () => async (dispatch) => {
-  const response = await csrfFetch("/api/posts/all");
+  const response = await fetch("/api/posts/all");
   if (response.ok) {
     const { posts } = await response.json();
     dispatch(setPosts(posts));
@@ -42,7 +42,7 @@ export const fetchAllPosts = () => async (dispatch) => {
 };
 
 export const fetchCurrentPosts = () => async (dispatch) => {
-  const response = await csrfFetch("/api/posts/current");
+  const response = await fetch("/api/posts/current");
   if (response.ok) {
     const { posts } = await response.json();
     dispatch(setPosts(posts));
@@ -50,7 +50,7 @@ export const fetchCurrentPosts = () => async (dispatch) => {
 };
 
 export const fetchPostById = (postId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/posts/${postId}`);
+  const response = await fetch(`/api/posts/${postId}`);
   if (response.ok) {
     const { post } = await response.json();
     dispatch(setPost(post));
@@ -58,7 +58,7 @@ export const fetchPostById = (postId) => async (dispatch) => {
 };
 
 export const thunkCreatePost = (content) => async (dispatch) => {
-    const response = await csrfFetch("/api/posts", {
+    const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const thunkCreatePost = (content) => async (dispatch) => {
   };
 
   export const thunkEditPost = (id, content) => async (dispatch) => {
-    const response = await csrfFetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export const thunkCreatePost = (content) => async (dispatch) => {
   };
 
   export const thunkDeletePostById = (postId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
     });
 
