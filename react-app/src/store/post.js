@@ -1,4 +1,4 @@
-
+import { thunkDeleteMedia } from './media';
 
 // Constants
 const SET_ALL_POSTS = "posts/SET_POSTS";
@@ -99,7 +99,7 @@ export const thunkCreatePost = (content) => async (dispatch) => {
     if (!response.ok) {
       throw new Error('Failed to delete the post.');
     }
-
+    dispatch(thunkDeleteMedia(postId));
     dispatch(removePost(postId));
   };
 
