@@ -1,0 +1,12 @@
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.post-index-all {
+    display:flex; 
+    flex-direction:column;
+    max-width: 500px;
+    height: auto;
+    gap: 40px;
+}
