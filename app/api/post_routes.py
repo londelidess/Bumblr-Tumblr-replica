@@ -83,8 +83,6 @@ def update_post(id):
 # delete a post
 @post_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
-
-
 def delete_post(id):
   post_to_delete = Post.query.get(id)
   if post_to_delete.users.id != current_user.id:
