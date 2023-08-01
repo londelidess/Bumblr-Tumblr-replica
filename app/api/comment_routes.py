@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, redirect
 from ..models import db, Comment
 from .auth_routes import authenticate
+from datetime import datetime
 
 comment_routes = Blueprint("comment", __name__)
 
@@ -8,7 +9,7 @@ comment_routes = Blueprint("comment", __name__)
 # Route to view all comments on a specific post
 @comment_routes.route('/<int:post_id>', methods=['GET'])
 def view_comments(post_id):
-    comments = Comment.query.filter_by(post_id=post_id).all()
+    comments = Comment.query.filter_by(post_id=post_id).order_by(Comment.post_date.desc()).all()
 
     return {"comments": [comment.to_dict() for comment in comments]}
 
@@ -31,8 +32,11 @@ def add_comment(post_id):
     if existing_comment:
         return {'error': 'You have already made a comment on this post'}, 400
 
+    formatted_date = datetime.now()
+    datetime_formatted = formatted_date.strftime("%Y-%m-%d %H:%M:%S")
+
     content = data['content']
-    comment = Comment(content=content, post_id=post_id, user_id=auth_response['id'])
+    comment = Comment(content=content, post_id=post_id, user_id=auth_response['id'], post_date = datetime_formatted)
     db.session.add(comment)
     db.session.commit()
 
@@ -64,6 +68,10 @@ def update_comment(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=['DELETE'])
 def delete_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
+
+    auth_response = authenticate()
+    if 'errors' in auth_response or auth_response['id'] != comment.user_id:
+        return jsonify({'error': 'You are not authorized to delete this comment'}), 401
 
     db.session.delete(comment)
     db.session.commit()

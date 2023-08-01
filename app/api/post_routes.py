@@ -1,6 +1,6 @@
 from random import randint
-from datetime import date
-from flask import Blueprint, request
+from datetime import datetime
+from flask import Blueprint, request, jsonify
 from ..forms.post_form import PostForm
 from ..forms.media_form import MediaForm
 from ..models import Post, User, Media, db
@@ -14,7 +14,7 @@ post_routes = Blueprint("posts", __name__)
 # get all posts
 @post_routes.route("/all")
 def all_posts():
-  all_posts = Post.query.all()
+  all_posts = Post.query.order_by(Post.post_date.desc()).all()
   response_posts = [post.to_dict() for post in all_posts]
   print(response_posts)
   return {"posts": response_posts }
@@ -23,7 +23,7 @@ def all_posts():
 @post_routes.route("/current")
 @login_required
 def current_posts():
-  all_posts = Post.query.filter_by(user_id=current_user.id).all()
+  all_posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.post_date.desc()).all()
   response_posts = [post.to_dict() for post in all_posts]
   return {"posts": response_posts }
 
@@ -40,11 +40,14 @@ def add_post():
   form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  formatted_date = datetime.now()
+  datetime_formatted = formatted_date.strftime("%Y-%m-%d %H:%M:%S")
+
   if form.validate_on_submit():
     new_post = Post(
       content = form.data["content"],
       users = current_user,
-      post_date = date.today()
+      post_date = datetime_formatted
     )
 
     db.session.add(new_post)
@@ -63,6 +66,10 @@ def update_post(id):
 
   if form.validate_on_submit():
     post_to_update = Post.query.get(id)
+
+    if post_to_update.users.id != current_user.id:
+      return jsonify({'error': 'You are not authorized to delete this post'}), 401
+
     if not post_to_update:
       return {"errors": f"post with id {id} does not exist"}
     post_to_update.user = current_user
@@ -75,8 +82,14 @@ def update_post(id):
 
 # delete a post
 @post_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+
+
 def delete_post(id):
   post_to_delete = Post.query.get(id)
+  if post_to_delete.users.id != current_user.id:
+    return jsonify({'error': 'You are not authorized to delete this post'}), 401
+
   db.session.delete(post_to_delete)
   db.session.commit()
   return {"message": "Successfully deleted!"}

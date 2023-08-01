@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import datetime
+from sqlalchemy import DateTime
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -10,7 +12,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("posts.id")), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    post_date = db.Column(db.Date, nullable=False)
+    post_date = db.Column(db.String, nullable=False)
 
     #Relationships
     users = db.relationship("User", back_populates="comments")
@@ -23,5 +25,6 @@ class Comment(db.Model):
             "id": self.id,
             "content": self.content,
             "user_id": self.user_id,
-            "post_id": self.post_id
+            "post_id": self.post_id,
+            "post_date": self.post_date
     }

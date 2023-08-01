@@ -11,13 +11,13 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    post_date = db.Column(db.Date, nullable=False)
+    post_date = db.Column(db.String, nullable=False)
 
     #relationship attributes
     users = db.relationship("User", back_populates="posts")
-    comments = db.relationship("Comment", back_populates="posts")
-    likes = db.relationship("Like", back_populates="posts")
-    medias = db.relationship("Media", back_populates="posts")
+    comments = db.relationship("Comment", back_populates="posts", cascade="all, delete")
+    likes = db.relationship("Like", back_populates="posts", cascade="all, delete")
+    medias = db.relationship("Media", back_populates="posts", cascade="all, delete")
 
     # post_likes = db.relationship(
     #     "User",
