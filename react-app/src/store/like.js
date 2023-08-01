@@ -71,14 +71,20 @@ export const thunkRemoveLike = (likeId) => async (dispatch) => {
   export default function likesReducer(state = initialState, action) {
     switch (action.type) {
       case SET_POST_LIKES:
-        return { ...state, postLikes: action.likes };
+        return {
+            ...state,
+            postLikes: action.likes
+        };
       case SET_USER_LIKES:
-        return { ...state, userLikes: action.likes };
+        return {
+
+            ...state,
+            userLikes: action.likes };
       case ADD_LIKE:
         return {
           ...state,
           postLikes: [...state.postLikes, action.like],
-          userLikes: [...state.userLikes, action.like], 
+          userLikes: [...state.userLikes, action.like],
         };
       case REMOVE_LIKE:
         return {
