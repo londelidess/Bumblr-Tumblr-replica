@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 // Constants
 const SET_ALL_POSTS = "posts/SET_POSTS";
 const ADD_POST = "posts/ADD_POST";
@@ -32,7 +34,7 @@ const removePost = (postId) => ({
 });
 
 export const fetchAllPosts = () => async (dispatch) => {
-  const response = await fetch("/api/posts/all");
+  const response = await csrfFetch("/api/posts/all");
   if (response.ok) {
     const { posts } = await response.json();
     dispatch(setPosts(posts));
@@ -40,7 +42,7 @@ export const fetchAllPosts = () => async (dispatch) => {
 };
 
 export const fetchCurrentPosts = () => async (dispatch) => {
-  const response = await fetch("/api/posts/current");
+  const response = await csrfFetch("/api/posts/current");
   if (response.ok) {
     const { posts } = await response.json();
     dispatch(setPosts(posts));
@@ -48,7 +50,7 @@ export const fetchCurrentPosts = () => async (dispatch) => {
 };
 
 export const fetchPostById = (postId) => async (dispatch) => {
-  const response = await fetch(`/api/posts/${postId}`);
+  const response = await csrfFetch(`/api/posts/${postId}`);
   if (response.ok) {
     const { post } = await response.json();
     dispatch(setPost(post));
@@ -56,7 +58,7 @@ export const fetchPostById = (postId) => async (dispatch) => {
 };
 
 export const thunkCreatePost = (content) => async (dispatch) => {
-    const response = await fetch("/api/posts", {
+    const response = await csrfFetch("/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,8 +74,8 @@ export const thunkCreatePost = (content) => async (dispatch) => {
     dispatch(addPost(post));
   };
 
-  export const thunkEditPost = (postId, content) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
+  export const thunkEditPost = (id, content) => async (dispatch) => {
+    const response = await csrfFetch(`/api/posts/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +92,7 @@ export const thunkCreatePost = (content) => async (dispatch) => {
   };
 
   export const thunkDeletePostById = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
+    const response = await csrfFetch(`/api/posts/${postId}`, {
       method: "DELETE",
     });
 
@@ -109,33 +111,46 @@ const initialState = {
     singlePost:{}
 };
 
+// selectors
+export const getPost = (state) => Object.values(state.spots.allPosts);
+
+export const getCurrentPosts = (state) => Object.values(state.spots.currentPosts);
+
+export const getOnePost = (spotId) => (state) => state.spots.singlePost;
+
 export default function postsReducer(state = initialState, action) {
-  let newState;
+
   switch (action.type) {
     case SET_ALL_POSTS:
-        
+
             let postState = { ...state , allSpots: {}};
             action.posts.forEach(post => {
                 postState[post.id] = post;
             });
             return postState;
 
-    // return {...state, }
-    // {
-    // postId1: { ...post1Details },
-    // postId2: { ...post2Details },
-    //}
-
     case SET_POST:
-      return { ...state, [action.post.id]: action.post };
-    case ADD_POST:
-      return { ...state, [action.post.id]: action.post };
+      return {
+        ...state,
+        singlePost:{...state.singlePost,[action.post.id]: action.post}
+    };
+    // case ADD_POST:
+    //   return {
+    //      ...state,
+    //      allPosts:{}
+    //      [action.post.id]: action.post
+    //     };
     case UPDATE_POST:
-      return { ...state, [action.post.id]: action.post };
+        const updatedPost = state.singlePost.id=== action.post.id ? action.post : state.singlePost
+      return {
+        ...state,
+        allPosts:{...state.allPosts, [action.post.id]: action.post },
+        singlePost: updatedPost
+        };
     case REMOVE_POST:
-      newState = { ...state };
+      const newState = { ...state.allPosts };
       delete newState[action.postId];
-      return newState;
+      return {...state, allPosts: newState}
     default:
       return state;
   }
