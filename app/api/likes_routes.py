@@ -14,16 +14,17 @@ def get_post_likes(post_id):
     return {"likes":response_post_likes}
 
 
-@like_routes.route('/<int:user_id>',methods=['GET'])
+@like_routes.route('/users/<int:user_id>',methods=['GET'])
+@login_required
 def get_user_likes():
     '''
-    get post's likes
+    get users likes
     '''
     user_likes = Like.query.filter_by(user_id=current_user.id).all()
     response_user_likes=[like.to_dict() for like in user_likes]
     return {"likes":response_user_likes}
 
-@like_routes.route('/<int:postid>/likes',methods=['POST'])
+@like_routes.route('/<int:post_id>/likes',methods=['POST'])
 @login_required
 def add_like(post_id):
     '''
