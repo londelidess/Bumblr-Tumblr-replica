@@ -15,15 +15,15 @@ const setUserFollowing = (users) => ({
   users,
 });
 
-const addFollow = (user) => ({
-  type: ADD_FOLLOW,
-  user,
-});
+// const addFollow = (user) => ({
+//   type: ADD_FOLLOW,
+//   user,
+// });
 
-const removeFollow = (userId) => ({
-  type: REMOVE_FOLLOW,
-  userId,
-});
+// const removeFollow = (userId) => ({
+//   type: REMOVE_FOLLOW,
+//   userId,
+// });
 
 export const fetchLoggedInUserFollowing = () => async (dispatch) => {
   const response = await fetch(`/api/follows/following`);
