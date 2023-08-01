@@ -112,11 +112,11 @@ const initialState = {
 };
 
 // selectors
-export const getPost = (state) => Object.values(state.spots.allPosts);
+export const getPost = (state) => Object.values(state.posts.allPosts);
 
-export const getCurrentPosts = (state) => Object.values(state.spots.currentPosts);
+export const getCurrentPosts = (state) => Object.values(state.posts.currentPosts);
 
-export const getOnePost = (spotId) => (state) => state.spots.singlePost;
+export const getOnePost = (spotId) => (state) => state.posts.singlePost;
 
 export default function postsReducer(state = initialState, action) {
 
@@ -125,7 +125,7 @@ export default function postsReducer(state = initialState, action) {
 
             let postState = { ...state , allSpots: {}};
             action.posts.forEach(post => {
-                postState[post.id] = post;
+                postState.allPosts[post.id] = post;
             });
             return postState;
 
