@@ -113,12 +113,14 @@ export default function postsReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case SET_ALL_POSTS:
-            // newState = { ...state };
-            // action.posts.forEach(post => {
-            //     newState[post.id] = post;
-            // });
-            // return newState;
-            newState
+        
+            let postState = { ...state , allSpots: {}};
+            action.posts.forEach(post => {
+                postState[post.id] = post;
+            });
+            return postState;
+
+    // return {...state, }
     // {
     // postId1: { ...post1Details },
     // postId2: { ...post2Details },
