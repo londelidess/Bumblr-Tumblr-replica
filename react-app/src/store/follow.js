@@ -1,8 +1,8 @@
 // Constants
 const SET_LOGGED_IN_USER_FOLLOWING = "follows/SET_LOGGED_IN_USER_FOLLOWING";
 const SET_USER_FOLLOWING = "follows/SET_USER_FOLLOWING";
-const ADD_FOLLOW = "follows/ADD_FOLLOW";
-const REMOVE_FOLLOW = "follows/REMOVE_FOLLOW";
+// const ADD_FOLLOW = "follows/ADD_FOLLOW";
+// const REMOVE_FOLLOW = "follows/REMOVE_FOLLOW";
 
 // Action Creators
 const setLoggedInUserFollowing = (users) => ({
