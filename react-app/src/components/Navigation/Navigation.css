@@ -6,15 +6,22 @@
 .logo {
   width: 30px;
   height: auto;
-
+  transition: transform 0.2s ease-in-out;
 }
+
+.logo:hover {
+  transform: rotate(20deg);
+}
+
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ccc;
+
 }
+
 
 .nav {
   display: flex;
@@ -25,12 +32,10 @@
   margin-right: 10px;
   cursor: pointer;
   color: rgb(197, 191, 191);
-  transition: transform 0.2s ease-in-out;
+
 }
 
-.icon-item:hover {
-  transform: translateY(-5px);
-}
+
 
 .icon-item:last-child {
   margin-right: 5px;
@@ -52,6 +57,7 @@
 .search-bar button {
   display: none;
 }
+
 
 .nav1 {
   display: flex;
@@ -112,7 +118,11 @@
   height: 40px;
   border: none;
   font-weight: bold;
+  background-image: linear-gradient(to right, #00cf35, #39ff14);
+
+  cursor: pointer;
 }
+
 
 .Login-modal-button,
 .signup-modal-button {
@@ -127,13 +137,25 @@
   color: rgb(197, 191, 191);
   margin-right: 10px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+
 }
 
+.icon-item:hover,
 .logo-login:hover {
-  transform: translateY(-5px);
+  animation: jumpAndDown 0.4s ease-in-out 1;
 }
 
+@keyframes jumpAndDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
 .fas.fa-pencil-alt.fa-lg {
   background: rgb(0, 174, 255);
@@ -141,4 +163,24 @@
   cursor: pointer;
   width: 50px;
   height: 20px;
+}
+
+.fas.fa-pencil-alt.fa-lg:hover {
+  animation: shake 0.2s ease-in-out 1 forwards;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-3px);
+  }
+
+  75% {
+    transform: translateX(3px);
+  }
 }
