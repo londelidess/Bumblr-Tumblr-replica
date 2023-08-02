@@ -24,7 +24,7 @@ import { useModal } from '../../context/Modal';
             setContent('');
             setMedia_file('');
             setValidationErrors([]);
-
+            closeModal();
         }
         useEffect(() => {
             const errors = [];

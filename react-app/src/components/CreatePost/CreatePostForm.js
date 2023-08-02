@@ -16,9 +16,8 @@ const CreatePostForm = () => {
         let errors = {}
         if (!content) errors.country = 'Content field is required'
 
-        const formData = new FormData()
-        formData.append("content", content)
-        await dispatch(thunkCreatePost(formData))
+        const componentformData = {content}
+        await dispatch(thunkCreatePost(componentformData))
         setContent('');
         setValidationErrors([]);
         closeModal()
