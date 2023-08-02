@@ -83,7 +83,7 @@ export const thunkCreatePost = (content) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ content }),
+    body: JSON.stringify( content ),
   });
 
   if (!response.ok) {
@@ -170,6 +170,8 @@ export default function postsReducer(state = initialState, action) {
       });
       return followingPostsState;
     case ADD_POST:
+      console.log('action:', action);
+      console.log('action.post:', action.post);
       return {
         ...state,
         allPosts: {
