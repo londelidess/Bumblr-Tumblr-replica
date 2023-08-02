@@ -35,7 +35,7 @@ class Post(db.Model):
             "comments": [comment.to_dict() for comment in self.comments],
             "likes":[like.to_dict() for like in self.likes],
             "comments_count": len(self.comments),
-            "likess_count": len(self.likes)
+            "likes_count": len(self.likes)
         }
 
     def to_dict_no_user(self):

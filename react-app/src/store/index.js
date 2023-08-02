@@ -4,6 +4,7 @@ import session from './session';
 import postsReducer from './post';
 import likesReducer from './like';
 import followsReducer from './follow'
+import mediaReducer from './media';
 import commentsReducer from './comment'
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   posts:postsReducer,
   likes:likesReducer,
   follows:followsReducer,
-  comments:commentsReducer
+  comments:commentsReducer,
+  media: mediaReducer
 });
 
 
