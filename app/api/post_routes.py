@@ -11,32 +11,56 @@ from .AWS_helpers import get_unique_filename, upload_file_to_s3, remove_file_fro
 
 post_routes = Blueprint("posts", __name__)
 
-# get all posts
 @post_routes.route("/all")
 def all_posts():
+  '''
+  get all posts
+  '''
   all_posts = Post.query.order_by(Post.post_date.desc()).all()
   response_posts = [post.to_dict() for post in all_posts]
   print(response_posts)
   return {"posts": response_posts }
 
-# get all posts of current user
+
 @post_routes.route("/current")
 @login_required
 def current_posts():
+  '''
+  get all posts of current user
+  '''
   all_posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.post_date.desc()).all()
   response_posts = [post.to_dict() for post in all_posts]
   return {"posts": response_posts }
 
-# get one post by id
+
+@post_routes.route("/following")
+@login_required
+def following_posts():
+  '''
+  get all posts from users that the current user is following
+  '''
+  following_users_ids = [user.id for user in current_user.following]
+  following_posts = Post.query.filter(Post.user_id.in_(following_users_ids)).order_by(Post.post_date.desc()).all()
+  response_posts = [post.to_dict() for post in following_posts]
+
+  return {"posts": response_posts}
+
+
 @post_routes.route("/<int:id>")
 def get_post_by_id(id):
-    one_post = Post.query.get(id)
-    return {"post": one_post.to_dict()}
+  '''
+  get a specific post by id
+  '''
+  one_post = Post.query.get(id)
+  return {"post": one_post.to_dict()}
 
-# create a new post
+
 @post_routes.route("", methods=["POST"])
 @login_required
 def add_post():
+  '''
+  create a new post
+  '''
   form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -57,10 +81,12 @@ def add_post():
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# update a post
 @post_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_post(id):
+  '''
+  update a new post
+  '''
   form = PostForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -80,10 +106,13 @@ def update_post(id):
 
   return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# delete a post
+
 @post_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_post(id):
+  '''
+  delete a post
+  '''
   post_to_delete = Post.query.get(id)
   if post_to_delete.users.id != current_user.id:
     return jsonify({'error': 'You are not authorized to delete this post'}), 401
@@ -92,10 +121,12 @@ def delete_post(id):
   db.session.commit()
   return {"message": "Successfully deleted!"}
 
-# add a media to a post
 @post_routes.route("/<int:id>/medias", methods=["POST"])
 @login_required
 def add_media(id):
+  '''
+  add a media to a post
+  '''
   form = MediaForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -109,8 +140,6 @@ def add_media(id):
 
     if "url" not in upload:
       return {"error": "upload failed!"}
-
-    # media_type = "image"
 
     if upload["url"].endswith("mp4"):
       media_type = "video"
