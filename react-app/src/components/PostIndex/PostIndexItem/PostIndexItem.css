@@ -93,6 +93,7 @@
 
 .post-index-comment-area-header svg {
     padding-left: 40px;
+    padding-right: 5px;
 }
 
 .post-index-comment-area {
@@ -105,4 +106,30 @@
     grid-template-columns: 1fr 10fr;
     gap: 20px;
     padding-top: 20px;
+}
+
+.comment-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.comment-form-wrapper form {
+    display: flex;
+}
+
+.postItem-like {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.postitem-delete-edit-wrapper {
+    direction: rtl;
+}
+
+.postitem-delete-edit-wrapper svg {
+    padding-right: 20px;
 }
