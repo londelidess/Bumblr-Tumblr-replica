@@ -48,7 +48,7 @@ function Navigation({ isLoaded }) {
 				<div className='nav'>
 					{sessionUser && (
 						<>
-							<NavLink to="/" className="icon-item" onClick="">
+							<NavLink to="/" className="icon-item">
 								<i className="fas fa-home fa-lg" /> {/* Home Component*/}
 							</NavLink>
 							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-envelope fa-lg" /></div>

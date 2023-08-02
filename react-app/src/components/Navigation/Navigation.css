@@ -80,10 +80,12 @@
   background-color: white;
   top: 20px;
   right: 10px;
+  font-weight: bold;
 }
 
-.user-options.div {
+.user-options {
   color: black;
+  padding-left: 35px;
 }
 
 .user-like a,
@@ -133,7 +135,7 @@
 }
 
 
-.create-but {
+.fas.fa-pencil-alt.fa-lg {
   background: rgb(0, 174, 255);
   border: none;
   cursor: pointer;

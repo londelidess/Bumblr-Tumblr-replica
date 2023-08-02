@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import CreatePostForm from "../CreatePost/CreatePostForm";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -55,10 +56,15 @@ function ProfileButton({ user }) {
 
       {/* Need to add create component */}
       {user && (
-        <button className="create-but" onClick="">
-          <i className="fas fa-pencil-alt fa-lg" />
-        </button>
-      )}
+  <OpenModalButton
+
+    modalComponent={<CreatePostForm />}
+    onItemClick={closeMenu}
+  i className="fas fa-pencil-alt fa-lg"
+  >
+
+  </OpenModalButton>
+)}
 
 
 
@@ -74,7 +80,7 @@ function ProfileButton({ user }) {
             </div>
             {/* Need the follow component */}
             <div className="user-follow">
-              <Link to="">Followers</Link>
+              <Link to="/following">Followers</Link>
             </div>
 
             <div className="user-logout" onClick={handleLogout}>
