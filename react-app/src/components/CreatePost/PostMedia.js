@@ -19,7 +19,7 @@ import { useModal } from '../../context/Modal';
             const formData = new FormData()
             formData.append("content", content)
             formData.append("media_file", media_file)
-            .then(closeModal)
+            
             await dispatch(thunkCreatePost(formData))
             setContent('');
             setMedia_file('');
