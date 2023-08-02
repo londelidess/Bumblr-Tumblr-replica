@@ -25,6 +25,11 @@
   margin-right: 10px;
   cursor: pointer;
   color: rgb(197, 191, 191);
+  transition: transform 0.2s ease-in-out;
+}
+
+.icon-item:hover {
+  transform: translateY(-5px);
 }
 
 .icon-item:last-child {
@@ -119,11 +124,16 @@
   color: rgb(197, 191, 191);
   margin-right: 10px;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo-login:hover {
+  transform: translateY(-5px);
 }
 
 
 .create-but {
-  background: rgb(0, 174, 255); 
+  background: rgb(0, 174, 255);
   border: none;
   cursor: pointer;
   width: 50px;
