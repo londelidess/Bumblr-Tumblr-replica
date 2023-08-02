@@ -74,7 +74,7 @@ function ProfileButton({ user }) {
             </div>
             {/* Need the follow component */}
             <div className="user-follow">
-              <Link to="">Followers</Link>
+              <Link to="/following">Followers</Link>
             </div>
 
             <div className="user-logout" onClick={handleLogout}>

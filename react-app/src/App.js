@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import PostIndex from "./components/PostIndex"
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import FollowsList from "./components/Follows/Index"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={PostIndex} />
+          <Route exact path="/following" component={FollowsList} />
           <Route path="/login" >
             <LoginFormPage />
           </Route>

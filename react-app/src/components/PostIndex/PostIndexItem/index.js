@@ -1,7 +1,9 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { thunkDeletePostById } from '../../../store/post';
+import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../../store/follow";
+
 import './PostIndexItem.css';
 import stock from '../../../images/stock.png'
 
@@ -9,10 +11,40 @@ const PostIndexItem = ({ post, fromPath }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [showCommentArea, setShowCommentArea] = useState(false);
+    const loggedInUserFollowing = useSelector((state) => state.follows.loggedInUserFollowing);
+    const loggedInUserId = useSelector((state) => state.session.user && state.session.user.id);
+
+
+    useEffect(() => {
+        dispatch(fetchLoggedInUserFollowing());
+    }, [dispatch]);
 
     const toggleShowCommentArea = () => {
         setShowCommentArea(prevState => !prevState)
     };
+
+    const handleFollow = (userId) => {
+        dispatch(thunkAddFollow(userId)).then(() => {
+            dispatch(fetchLoggedInUserFollowing());
+        });
+    };
+
+    const handleUnfollow = (userId) => {
+        dispatch(thunkRemoveFollow(userId)).then(() => {
+            dispatch(fetchLoggedInUserFollowing());
+        });
+    };
+
+    const isUserFollowing = (userId) => {
+        return loggedInUserFollowing.some((followedUser) => followedUser.id === userId);
+    };
+
+
+    // Check if it's the user's own post
+    const isOwnPost = post.user.id === loggedInUserId;
+
+    // Check if the logged-in user is following the user of the post
+    const isCurrentUserFollowingPostUser = isUserFollowing(post.user.id);
 
     return (
         <div className='post-index-item-wrapper'>
@@ -24,7 +56,12 @@ const PostIndexItem = ({ post, fromPath }) => {
                 <Link className='postItem-title-bar' to='/'>
                     <div className='post-user-follow'>
                         <span className='title-bar-username'>{post.user.username}</span>
-                        <span className='title-bar-follow'>Follow</span>
+                        {!isOwnPost && !isCurrentUserFollowingPostUser && (
+                            <button onClick={() => handleFollow(post.user.id)}>Follow</button>
+                        )}
+                        {!isOwnPost && isCurrentUserFollowingPostUser && (
+                            <button onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
+                        )}
                     </div>
                     <div className='post-index-item-menu'>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z" /></svg>
@@ -79,7 +116,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                 {item.content}
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 ))}
                             </div>
