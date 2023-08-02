@@ -18,11 +18,11 @@ function Navigation({ isLoaded }) {
 		setSearchInput(e.target.value);
 	};
 
-	const handleSearchSubmit = (e) => {
-		e.preventDefault();
-		console.log('Search submitted:', searchInput);
-		setSearchInput('');
-	};
+	// const handleSearchSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	console.log('Search submitted:', searchInput);
+	// 	setSearchInput('');
+	// };
 
 	return (
 		<div className='nav-container'>
@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
 					<img className="logo" src={logo} alt="Home" />
 				</NavLink>
 
-				<form className="search-bar" onSubmit={handleSearchSubmit}>
+				<form className="search-bar" onSubmit={handleReserveClick}>
 					<input
 						type="text"
 						value={searchInput}
@@ -49,12 +49,13 @@ function Navigation({ isLoaded }) {
 					{sessionUser && (
 						<>
 							<NavLink to="/" className="icon-item" onClick="">
-								<i className="fas fa-home fa-lg" /> {/* Home icon */}
+								<i className="fas fa-home fa-lg" /> {/* Home Component*/}
 							</NavLink>
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-envelope fa-lg" /></div> {/* Email icon */}
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-compass fa-lg" /></div> {/* Telegram icon */}
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-video fa-lg" /></div> {/* Video camera icon */}
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-bolt fa-lg" /></div> {/* Bolt icon */}
+							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-envelope fa-lg" /></div>
+							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-compass fa-lg" /></div>
+							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-video fa-lg" /></div>
+							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-bolt fa-lg" /></div>
+
 						</>
 					)}
 

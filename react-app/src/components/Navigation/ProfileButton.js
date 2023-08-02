@@ -42,19 +42,37 @@ function ProfileButton({ user }) {
   return (
     <div className="profile-container">
 
-      <button className="Cred" onClick={openMenu}>
-        Log In
-      </button>
+      {!user ? (
+        <button className="Cred" onClick={openMenu}>
+          Log In
+        </button>
+      ) : (
+        <div className="logo-login" onClick={openMenu}>
+          <i className="fas fa-user fa-lg" />
+        </div>
+      )}
+
+
+      {/* Need to add create component */}
+      {user && (
+        <button className="create-but" onClick="">
+          <i className="fas fa-pencil-alt fa-lg" />
+        </button>
+      )}
+
+
+
 
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <div className="user-options">
             <div>Hi {user.username}</div>
             {/* <div>{user.email}</div> */}
+            {/* Need the likes component */}
             <div className="user-like">
               <Link to="">Likes</Link>
             </div>
-
+            {/* Need the follow component */}
             <div className="user-follow">
               <Link to="">Followers</Link>
             </div>
