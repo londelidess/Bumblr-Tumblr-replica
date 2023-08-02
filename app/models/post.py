@@ -33,7 +33,9 @@ class Post(db.Model):
             "user": self.users.to_dict(),
             "medias": [media.to_dict() for media in self.medias],
             "comments": [comment.to_dict() for comment in self.comments],
-            "likes":[like.to_dict() for like in self.likes]
+            "likes":[like.to_dict() for like in self.likes],
+            "comments_count": len(self.comments),
+            "likess_count": len(self.likes)
         }
 
     def to_dict_no_user(self):
