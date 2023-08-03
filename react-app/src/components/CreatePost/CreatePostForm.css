@@ -16,18 +16,13 @@
 
 .Post-Media-input {
     background-color: #f0f0f0;
-    padding: 10px 20px;
     border-radius: 4px;
+    margin-bottom: 10px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-/* #image {
-    display: none;
-} */
-
-/* Optional: Add a label style for the selected file name display */
 .selected-file {
     margin-top: 10px;
     font-size: 14px;
