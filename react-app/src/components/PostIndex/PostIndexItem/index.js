@@ -1,10 +1,10 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkDeletePostById, fetchFollowingPosts, fetchAllPosts } from '../../../store/post';
+import { fetchFollowingPosts, fetchAllPosts } from '../../../store/post';
 import { thunkCreateComment, thunkRemoveComment } from '../../../store/comment'
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../../store/follow";
-import DeleteIcon from "../../IconCollection/DeleteIcon"
+import { fetchPostLikes } from "../../../store/like";
 import ThreeDotsIcon from "../../IconCollection/ThreeDotsIcon"
 import EditIcon from '../../IconCollection/EditIcon';
 
@@ -15,8 +15,8 @@ import LikeIcon from '../../IconCollection/LikeIcon';
 import RePostIcon from '../../IconCollection/RePostIcon';
 import CommentIcon from '../../IconCollection/CommentIcon';
 import SharingIcon from '../../IconCollection/SharingIcon';
-import likesReducer from '../../../store/like';
 import DeleteConfirmModal from '../../DeleteConfirmModal';
+import CommentEditModal from './CommentEditModal';
 import OpenModalMenuItem from '../OpenModalMenuItem';
 import { useModal } from "../../../context/Modal";
 
@@ -104,7 +104,7 @@ const PostIndexItem = ({ post, fromPath }) => {
     }
 
     useEffect(() => {
-
+        dispatch(fetchPostLikes(post.id));
     }, [dispatch]);
 
     return (
@@ -226,10 +226,10 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                     (
                                                         <div className='comment-delete-button'>
                                                             <OpenModalMenuItem
-                                                                itemType='delete_icon'
+                                                                itemType='edit_icon'
                                                                 itemText="Delete"
                                                                 // onItemClick={closeMenu}
-                                                                modalComponent={<DeleteConfirmModal comment={item} type='comment' />}
+                                                                modalComponent={<CommentEditModal comment={item} />}
                                                             />
                                                             <OpenModalMenuItem
                                                                 itemType='delete_icon'

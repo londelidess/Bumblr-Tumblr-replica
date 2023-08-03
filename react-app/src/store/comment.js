@@ -59,7 +59,7 @@ export const thunkEditComment = (commentId, content) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ content })
+        body: JSON.stringify( content )
     });
     if (response.ok) {
         const comment = await response.json();
