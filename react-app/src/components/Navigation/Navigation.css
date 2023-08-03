@@ -142,18 +142,18 @@
 
 .icon-item:hover,
 .logo-login:hover {
-  animation: jumpAndDown 0.4s ease-in-out 1;
+  animation: jumpAndDown 1s ease-in-out 1;
 }
 
 @keyframes jumpAndDown {
 
   0%,
-  100% {
+  50% {
     transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-15px);
+    transform: translateY(-5px);
   }
 }
 

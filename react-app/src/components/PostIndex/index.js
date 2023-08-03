@@ -6,7 +6,7 @@ import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../sto
 import { useEffect } from 'react';
 import './PostIndex.css';
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
-
+import CreateBar from "../CreateBar"
 
 const getPost = (state) => Object.values(state.posts.allPosts);
 
@@ -54,16 +54,17 @@ const PostIndex = () => {
     return (
         <div className='home-wrapper'>
             <div className='posts_option_tab'>
-                
-                {currentUser &&
-                    (
+
+                {currentUser && (
+                    <div>
                         <div className='foryou_following_tabs'>
-                            <div className='following_tab' onClick={showFollowingTab}>Following</div>
+                            <div className='following_tab'  onClick={showFollowingTab}>Following</div>
                             <div className='foryou_tab' onClick={showForYouTab}>For you</div>
                         </div>
-                    )
-                }
-                
+                        <CreateBar />
+                    </div>
+                )}
+
             </div>
 
             {displayOption === "show_foryou" &&
@@ -92,7 +93,7 @@ const PostIndex = () => {
                 )
             }
 
-            { !currentUser && 
+            {!currentUser &&
                 (
                     <div className='post-index-all'>
                         {allPosts.map((post, index) => (

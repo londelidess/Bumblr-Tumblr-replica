@@ -7,13 +7,13 @@
 }
 
 .post-index-all {
-    display:flex; 
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     width: 614px;
     padding-top: 40px;
     height: auto;
     gap: 40px;
-    border-top: 1px gray solid;
+
 }
 
 .posts_option_tab {
@@ -21,11 +21,27 @@
     width: 614px;
 }
 
+.foryou_tab {
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
 .following_tab {
     padding-right: 40px;
-    padding-left: 120px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 }
+
+
 
 .foryou_following_tabs {
     display: flex;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    border-bottom: 5px;
+    border-bottom: 1px gray solid;
 }

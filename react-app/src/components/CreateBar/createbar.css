@@ -1,0 +1,134 @@
+.create-bar-container {
+    display: flex;
+}
+
+.create-bar {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.create-bar li {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+.create-bar-button {
+    padding: 12px 18px;
+    background-color: #141010;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-bar-text {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+
+.create-tiny-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+
+.create-bar-post .fa {
+    background: transparent;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding-right: 20px;
+}
+
+
+.create-bar-camera .fa {
+    background: transparent;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding-right: 20px;
+    color: rgb(230, 4, 4)
+}
+
+.create-bar-modal {
+    margin-left: 15px;
+}
+
+.create-bar-text {
+    margin-left: px;
+}
+
+.fa-quote-left {
+    color: orange;
+    margin-bottom: 4px;
+}
+
+.fa-link {
+    color: green;
+    margin-bottom: 5px;
+}
+
+.fa-comment {
+    color: lightblue;
+    margin-bottom: 5px;
+}
+
+.fa-headphones {
+    color: rgb(81, 0, 211);
+    margin-bottom: 5px;
+}
+
+.create-bar-button .fa-video {
+    color: pink;
+    margin-bottom: 5px;
+}
+
+
+.create-bar-post .fa:hover,
+.create-bar-camera .fa:hover,
+.create-bar-button .fa-video:hover,
+.create-bar-button .fa-headphones:hover,
+.create-bar-button .fa-comment:hover,
+.create-bar-button .fa-link:hover,
+.create-bar-button .fa-quote-left:hover {
+    animation: jump 1s ease-in-out;
+}
+
+@keyframes jump {
+
+    0%,
+    50% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-5px);
+    }
+}

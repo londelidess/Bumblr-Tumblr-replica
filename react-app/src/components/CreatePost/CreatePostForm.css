@@ -1,25 +1,67 @@
-.form-container{
+.form-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height:25rem;
-width:28rem
+    height: 25rem;
+    width: 28rem
 }
-.create-post-form{
-padding:1rem;
+
+.media-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.Post-Media-input {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#image {
+    display: none;
+}
+
+/* Optional: Add a label style for the selected file name display */
+.selected-file {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #888;
+}
+
+.Post-Media-input:hover {
+    background-color: #e0e0e0;
+}
+
+.Post-Media-input:active {
+    background-color: #d0d0d0;
+}
+
+.create-post-form {
+    padding: 1rem;
 
 }
-.PostForm-content{
- 
-    width:100%    
-}
-.Create-Form-Submit-btn{
-    padding:2rem;
-height:5rem
-}
-.Create-Post-Submit{
 
-height:1rem;
-width:1.5rem
+.PostForm-content {
+    height: 80px;
+    width: 300px
+}
+
+.Create-Form-Submit-btn {
+    padding: 2rem;
+    height: 5rem
+}
+
+.Create-Post-Submit {
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: lightblue;
+    cursor: pointer;
 }

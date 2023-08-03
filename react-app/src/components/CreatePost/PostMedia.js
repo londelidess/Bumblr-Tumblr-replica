@@ -4,14 +4,17 @@ import { useDispatch } from 'react-redux';
 import { thunkCreatePost } from '../../store/post';
 import { thunkAddMediaToPost } from '../../store/media';
 import { useModal } from '../../context/Modal';
+import "./CreatePostForm.css"
+
     const CreateMediaForm = () => {
         const [content, setContent] = useState('');
         const [media_file, setMedia_file] = useState('');
         const [validationErrors, setValidationErrors] = useState([]);
+        const [showMenu, setShowMenu] = useState(false);
         const dispatch = useDispatch();
         const history = useHistory();
         const {closeModal} = useModal()
-
+        const [mediaFile, setMediaFile] = useState(null);
         const handleSubmit = async (e) => {
             e.preventDefault()
             let errors = {}
@@ -35,25 +38,37 @@ import { useModal } from '../../context/Modal';
             if (!content.length) errors.push("Please enter a post caption!");
             setValidationErrors(errors);
         },[content])
+
+        const handleFileChange = (e) => {
+            // Get the selected file
+            const file = e.target.files[0];
+            setMediaFile(file);
+
+            // Do any other handling of the selected file, e.g., upload to server, etc.
+        };
+
+
 return (
     <div className='form-container'>
             <form className='create-post-form' onSubmit={handleSubmit}
             encType="multipart/form-data" >
                 <div className='media-input'>
-                <label
-                            className="Post-Media-input"
-                            htmlFor='image'
-                        >
-                            Upload Images
-                        </label>
-                        <input
-                            id="image"
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setMedia_file(e.target.files[0])}
-                            >
-                        </input>
+                <label className="Post-Media-input" htmlFor="image">
+                    Upload Images
+                </label>
+                <input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                />
+            </div>
+            {/* Display the selected image */}
+            {mediaFile && (
+                <div className="selected-file">
+                    Selected Image: {mediaFile.name}
                 </div>
+            )}
             {validationErrors.content ? <p className="errors">{validationErrors.content}</p> : ''}
                 <input className='PostForm-content'
                 placeholder='Whats on your mind?'
