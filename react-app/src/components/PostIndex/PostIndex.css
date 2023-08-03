@@ -9,7 +9,7 @@
 .post-index-all {
     display:flex; 
     flex-direction:column;
-    max-width: 614px;
+    width: 614px;
     padding-top: 40px;
     height: auto;
     gap: 40px;
