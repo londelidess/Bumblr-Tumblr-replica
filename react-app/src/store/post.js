@@ -95,10 +95,10 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
 export const thunkEditPost = (id, content) => async (dispatch) => {
   const response = await fetch(`/api/posts/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ content }),
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: content,
   });
 
   if (!response.ok) {

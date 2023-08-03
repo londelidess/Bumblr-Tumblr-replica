@@ -3,6 +3,8 @@ import PostIndexItem from "./PostIndexItem";
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
+import { fetchUserLikes } from '../../store/like';
+
 import { useEffect } from 'react';
 import './PostIndex.css';
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
@@ -44,6 +46,7 @@ const PostIndex = () => {
             try {
                 dispatch(fetchLoggedInUserFollowing());
                 dispatch(fetchFollowingPosts());
+                dispatch(fetchUserLikes(currentUser.id));
             } catch (e) {
                 return
             }

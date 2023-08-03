@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 import DeleteIcon from '../IconCollection/DeleteIcon';
+import EditIcon from '../IconCollection/EditIcon';
 
 function OpenModalMenuItem({
     itemType,
@@ -22,6 +23,7 @@ function OpenModalMenuItem({
             {itemType === 'list' && (<li onClick={onClick}>{itemText}</li>)}
             {itemType === 'button' && (<button onClick={onClick}>{itemText}</button>)}
             {itemType === 'delete_icon' && (<DeleteIcon onClick={onClick} />)}
+            {itemType === 'edit_icon' && (<EditIcon onClick={onClick} />)}
         </>
     );
 }

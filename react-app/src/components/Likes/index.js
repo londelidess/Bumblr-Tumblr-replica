@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostLikes, thunkAddLike, thunkRemoveLike, fetchUserLikes } from "../../store/like";
+import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
 import LikeButton from "./Button";
 
 
@@ -19,12 +20,9 @@ const Likes = ({ post}) => {
     })
     const [likeId, setLikeId] = useState(originalLikeId)
 
-    useEffect(() => {
-        dispatch(fetchPostLikes(post.id));
-        dispatch(fetchUserLikes(loggedInUserId));
-    }, [dispatch, post.id, loggedInUserId]);
-
-
+    // useEffect(() => {
+    //     dispatch(fetchPostLikes(post.id));
+    // }, [dispatch, post.id]);
 
     const isUserLiked = () => {
         return userLikes.some((like) => like.post_id === post.id);
@@ -34,10 +32,14 @@ const Likes = ({ post}) => {
         console.log(isUserLiked())
         if (isUserLiked()) {
             dispatch(thunkRemoveLike(likeId));
+            dispatch(fetchFollowingPosts());
+            dispatch(fetchAllPosts());
         } else {
             const data = await dispatch(thunkAddLike(post.id));
             setLikeId(data.id)
-            dispatch(fetchUserLikes(loggedInUserId))
+            dispatch(fetchUserLikes(loggedInUserId));
+            dispatch(fetchFollowingPosts());
+            dispatch(fetchAllPosts());
         }
     };
 
