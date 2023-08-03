@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
 import { useEffect } from 'react';
 import './PostIndex.css';
+import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
+
 
 const getPost = (state) => Object.values(state.posts.allPosts);
 
@@ -16,42 +18,82 @@ const PostIndex = () => {
     const allPosts = useSelector(getPost);
     const followingPosts = useSelector(getFollowingPosts);
     const dispatch = useDispatch();
-    const [postsToShow, setPostsToShow] = useState(allPosts);
+    const [displayOption, setDisplayOption] = useState("show_following");
 
     const showForYouTab = () => {
-        setPostsToShow(allPosts)
+        setDisplayOption("show_foryou")
     }
 
     const showFollowingTab = () => {
-        setPostsToShow(followingPosts)
+        setDisplayOption("show_following")
     }
 
     useEffect(() => {
         dispatch(fetchAllPosts());
         if (currentUser) {
-            dispatch(fetchFollowingPosts())
+            try {
+                dispatch(fetchLoggedInUserFollowing());
+                dispatch(fetchFollowingPosts());
+            } catch (e) {
+                return
+            }
         }
-    }, [dispatch]);
+    }, [dispatch, currentUser]);
+
 
     return (
         <div className='home-wrapper'>
             <div className='posts_option_tab'>
-                <div className='foryou_tab' onClick={showForYouTab}>For you</div>
+                
                 {currentUser &&
                     (
-                        <div className='following_tab' onClick={showFollowingTab}>Following</div>
+                        <div className='foryou_following_tabs'>
+                            <div className='following_tab' onClick={showFollowingTab}>Following</div>
+                            <div className='foryou_tab' onClick={showForYouTab}>For you</div>
+                        </div>
                     )
                 }
+                
             </div>
 
-            <div className='post-index-all'>
-                {postsToShow.map((post, index) => (
-                    <PostIndexItem
-                        post={post}
-                        key={index}
-                    />
-                ))}
-            </div>
+            {displayOption === "show_foryou" &&
+                (
+                    <div className='post-index-all'>
+                        {allPosts.map((post, index) => (
+                            <PostIndexItem
+                                post={post}
+                                key={index}
+                            />
+                        ))}
+                    </div>
+                )
+            }
+
+            {displayOption === "show_following" &&
+                (
+                    <div className='post-index-all'>
+                        {followingPosts.map((post, index) => (
+                            <PostIndexItem
+                                post={post}
+                                key={index}
+                            />
+                        ))}
+                    </div>
+                )
+            }
+
+            { !currentUser && 
+                (
+                    <div className='post-index-all'>
+                        {allPosts.map((post, index) => (
+                            <PostIndexItem
+                                post={post}
+                                key={index}
+                            />
+                        ))}
+                    </div>
+                )
+            }
         </div>
     );
 };

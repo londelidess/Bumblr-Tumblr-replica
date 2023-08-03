@@ -12,6 +12,7 @@
 .post-index-item-wrapper {
     display: grid;
     max-width: 614px ;
+    min-width: 614px ;
     grid-template-columns: 1fr 10fr;
     gap: 20px;
 }
@@ -102,7 +103,7 @@
 
 .postItem-comment {
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns: 1fr 8fr 1fr;
     gap: 20px;
     padding-top: 20px;
 }
@@ -131,4 +132,15 @@
 
 .postitem-delete-edit-wrapper svg {
     padding-right: 20px;
+}
+
+.comment-delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrolldown-right {
+    height: 400px;
+    overflow-y: auto;
 }
