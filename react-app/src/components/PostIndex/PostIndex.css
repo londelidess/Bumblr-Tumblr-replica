@@ -9,7 +9,7 @@
 .post-index-all {
     display:flex; 
     flex-direction:column;
-    max-width: 614px;
+    width: 614px;
     padding-top: 40px;
     height: auto;
     gap: 40px;
@@ -21,7 +21,11 @@
     width: 614px;
 }
 
-.foryou_tab {
+.following_tab {
     padding-right: 40px;
     padding-left: 120px;
+}
+
+.foryou_following_tabs {
+    display: flex;
 }
