@@ -7,7 +7,8 @@ import PostIndex from "./components/PostIndex"
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import FollowsList from "./components/Follows/Index"
-import OwnPosts from "./components/PostIndex/OwnPosts"
+import UserLikes from "./components/PostIndex/UserLikes"
+import UserCurrent from "./components/PostIndex/UserCurrent"
 
 import CreateMediaForm from "./components/CreatePost/PostMedia"
 function App() {
@@ -23,9 +24,9 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={PostIndex} />
-          <Route exact path="/likes" component={PostIndex} />
+          <Route exact path="/likes" component={UserLikes} />
           <Route exact path="/following" component={FollowsList} />
-          <Route exact path="/current" component={OwnPosts} />
+          <Route exact path="/current" component={UserCurrent} />
           <Route exact path="/NewMedia" component={CreateMediaForm} />
           <Route path="/login" >
             <LoginFormPage />
