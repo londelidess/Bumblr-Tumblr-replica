@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { thunkCreatePost,fetchAllPosts } from '../../store/post';
 import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
-
+import "./CreatePostForm.css"
 const CreatePostForm = () => {
     const [content, setContent] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
@@ -15,11 +15,10 @@ const CreatePostForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
-        if (!content) errors.country = 'Content field is required'
+        if (!content) errors.content = 'Content field is required'
 
         const formData = new FormData()
         formData.append("content", content);
-        formData.append("currentUser",currentUser)
       await dispatch(thunkCreatePost(formData))
         setContent('');
         setValidationErrors([]);

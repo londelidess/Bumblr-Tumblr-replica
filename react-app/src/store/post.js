@@ -57,7 +57,7 @@ export const fetchCurrentPosts = () => async (dispatch) => {
   const response = await fetch("/api/posts/current");
   if (response.ok) {
     const { posts } = await response.json();
-    dispatch(setCurrentPosts(posts));
+    return dispatch(setCurrentPosts(posts));
   }
 };
 
@@ -89,6 +89,7 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
   const data = await response.json();
   console.log("This is post from thunkCreate", data)
   dispatch(addPost(data.posts));
+  return data.posts
 };
 
 export const thunkEditPost = (id, content) => async (dispatch) => {

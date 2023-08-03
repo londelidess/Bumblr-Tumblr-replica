@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { thunkCreatePost } from '../../store/post';
+import { thunkCreatePost,fetchAllPosts } from '../../store/post';
+import { thunkAddMediaToPost } from '../../store/media';
 import { useModal } from '../../context/Modal';
     const CreateMediaForm = () => {
         const [content, setContent] = useState('');
@@ -14,16 +15,20 @@ import { useModal } from '../../context/Modal';
         const handleSubmit = async (e) => {
             e.preventDefault()
             let errors = {}
-            if (!content) errors.country = 'Content field is required'
+            if (!content) errors.content = 'Content field is required'
 
             const formData = new FormData()
             formData.append("content", content)
             formData.append("media_file", media_file)
-            
-            await dispatch(thunkCreatePost(formData))
+
+            const postData = await dispatch(thunkCreatePost(formData));
+            if (media_file) {
+                await dispatch(thunkAddMediaToPost(postData.id, media_file));
+              }
             setContent('');
             setMedia_file('');
             setValidationErrors([]);
+            await dispatch(fetchAllPosts())
             closeModal();
         }
         useEffect(() => {
@@ -36,8 +41,8 @@ return (
             <form className='create-post-form' onSubmit={handleSubmit}
             encType="multipart/form-data" >
                 <div className='media-input'>
-                <label 
-                            className="Post-Media-input" 
+                <label
+                            className="Post-Media-input"
                             htmlFor='image'
                         >
                             Upload Images
@@ -59,7 +64,7 @@ return (
                 />
                 <div className='Create-Form-Submit-btn'>
                 <button className='Create-Post-Submit'>Submit</button>
-                </div>    
+                </div>
             </form>
             </div>
 )
