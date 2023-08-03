@@ -86,9 +86,9 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
   if (!response.ok) {
     throw new Error("Failed to create the post.");
   }
-  const  post  = await response.json();
-  console.log("This is post from thunkCreate",post)
-  dispatch(addPost(post));
+  const  data  = await response.json();
+  console.log("This is post from thunkCreate",data)
+  dispatch(addPost(data.posts));
 };
 
 export const thunkEditPost = (id, content) => async (dispatch) => {

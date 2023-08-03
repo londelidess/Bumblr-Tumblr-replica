@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { thunkCreatePost,fetchAllPosts } from '../../store/post';
 import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
+
 const CreatePostForm = () => {
     const [content, setContent] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal()
-
+    const currentUser = useSelector((state) => state.posts.currentUser);
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
@@ -18,6 +19,7 @@ const CreatePostForm = () => {
 
         const formData = new FormData()
         formData.append("content", content);
+        formData.append("currentUser",currentUser)
       await dispatch(thunkCreatePost(formData))
         setContent('');
         setValidationErrors([]);
@@ -44,7 +46,7 @@ return (
                 onChange={(e) => setContent(e.target.value)}
             />
             <div className='Create-Form-Submit-btn'>
-                <button className='Create-Post-Submit'>Submit</button>
+                <button className='Create-Post-Submit' type='submit'>Submit</button>
             </div>
         </form>
     </div>
