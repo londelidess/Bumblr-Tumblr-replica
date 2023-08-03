@@ -7,7 +7,7 @@ import PostIndex from "./components/PostIndex"
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import FollowsList from "./components/Follows/Index"
-
+import CreateMediaForm from "./components/CreatePost/PostMedia"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={PostIndex} />
           <Route exact path="/following" component={FollowsList} />
+          <Route exact path="/NewMedia" component={CreateMediaForm} />
           <Route path="/login" >
             <LoginFormPage />
           </Route>
