@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostLikes, thunkAddLike, thunkRemoveLike } from "../path/to/likesReducer";
+import { fetchPostLikes, thunkAddLike, thunkRemoveLike } from "../../store/like";
 
 const Likes = ({ postId }) => {
     const dispatch = useDispatch();
@@ -34,12 +34,17 @@ const Likes = ({ postId }) => {
 
     return (
         <div className="likes-container">
+            <div className={`heart-icon ${isUserLiked() ? 'liked' : ''}`}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                    onClick={isUserLiked() ? handleUnlike : handleLike}
+                >
+                    {/* Your SVG path here */}
+                </svg>
+            </div>
             <div className="likes-count">{postLikes.length} Likes</div>
-            {!isUserLiked() ? (
-                <button onClick={handleLike}>Like</button>
-            ) : (
-                <button onClick={handleUnlike}>Unlike</button>
-            )}
         </div>
     );
 };
