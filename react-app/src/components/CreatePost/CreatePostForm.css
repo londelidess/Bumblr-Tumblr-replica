@@ -1,0 +1,25 @@
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height:25rem;
+width:28rem
+}
+.create-post-form{
+padding:1rem;
+
+}
+.PostForm-content{
+ 
+    width:100%    
+}
+.Create-Form-Submit-btn{
+    padding:2rem;
+height:5rem
+}
+.Create-Post-Submit{
+
+height:1rem;
+width:1.5rem
+}

@@ -58,7 +58,7 @@ function ProfileButton({ user }) {
       {/* Need to add create component */}
       {user && (
         <OpenModalButton
-          modalComponent={<CreatePostForm />}
+          modalComponent={<CreateMediaForm />}
           onItemClick={closeMenu}
           i className="fas fa-pencil-alt fa-lg"
         >
