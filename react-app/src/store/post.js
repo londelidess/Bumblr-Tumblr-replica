@@ -77,20 +77,17 @@ export const fetchPostById = (postId) => async (dispatch) => {
   }
 };
 
-export const thunkCreatePost = (content) => async (dispatch) => {
+export const thunkCreatePost = (formData) => async (dispatch) => {
   const response = await fetch("/api/posts", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify( content ),
+    body: formData,
   });
 
   if (!response.ok) {
     throw new Error("Failed to create the post.");
   }
-
-  const { post } = await response.json();
+  const  post  = await response.json();
+  console.log("This is post from thunkCreate",post)
   dispatch(addPost(post));
 };
 
@@ -170,8 +167,6 @@ export default function postsReducer(state = initialState, action) {
       });
       return followingPostsState;
     case ADD_POST:
-      console.log('action:', action);
-      console.log('action.post:', action.post);
       return {
         ...state,
         allPosts: {
