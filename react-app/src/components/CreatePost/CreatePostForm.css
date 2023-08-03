@@ -23,9 +23,9 @@
     transition: background-color 0.3s ease;
 }
 
-#image {
+/* #image {
     display: none;
-}
+} */
 
 /* Optional: Add a label style for the selected file name display */
 .selected-file {
