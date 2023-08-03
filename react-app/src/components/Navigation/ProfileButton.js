@@ -57,18 +57,13 @@ function ProfileButton({ user }) {
 
       {/* Need to add create component */}
       {user && (
-  <OpenModalButton
-
-    modalComponent={<CreatePostForm />}
-    onItemClick={closeMenu}
-  i className="fas fa-pencil-alt fa-lg"
-  >
-
-  </OpenModalButton>
-)}
-
-
-
+        <OpenModalButton
+          modalComponent={<CreatePostForm />}
+          onItemClick={closeMenu}
+          i className="fas fa-pencil-alt fa-lg"
+        >
+        </OpenModalButton>
+      )}
 
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
