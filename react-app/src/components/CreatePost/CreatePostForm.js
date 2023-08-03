@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { thunkCreatePost } from '../../store/post';
+import { thunkCreatePost,fetchAllPosts } from '../../store/post';
 import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
 const CreatePostForm = () => {
@@ -16,10 +16,13 @@ const CreatePostForm = () => {
         let errors = {}
         if (!content) errors.country = 'Content field is required'
 
-        const componentformData = {content}
-        await dispatch(thunkCreatePost(componentformData))
+        const formData = new FormData()
+        formData.append("content", content);
+      await dispatch(thunkCreatePost(formData))
         setContent('');
         setValidationErrors([]);
+        await dispatch(fetchAllPosts())
+        // history.push('/') 
         closeModal()
 
     }

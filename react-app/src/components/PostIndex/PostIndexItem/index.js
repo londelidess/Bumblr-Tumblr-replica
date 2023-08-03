@@ -11,8 +11,8 @@ import stock from '../../../images/stock.png'
 const PostIndexItem = ({ post, fromPath }) => {
     const getCurrentUser = (state) => state.session.user;
     const currentUser = useSelector(getCurrentUser);
-    console.log("current user is:")
-    console.log(currentUser)
+    // console.log("current user is:")
+    // console.log(currentUser)
     const history = useHistory();
     const dispatch = useDispatch();
     const [showCommentArea, setShowCommentArea] = useState(false);
