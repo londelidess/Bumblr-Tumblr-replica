@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -21,6 +22,19 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    const demoEmail = "demo@aa.io";
+    const demoPassword = "password";
+
+    const data = await dispatch(login(demoEmail, demoPassword));
+
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal();
+    }
+  };
   return (
     <div className="log">
       <h1>Log In</h1>
@@ -49,6 +63,9 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <p className="demo-link" onClick={handleDemoLogin}>
+          Demo User
+        </p>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import SignupFormModal from "../SignupFormModal";
 import './Navigation.css'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import CreatePostForm from "../CreatePost/CreatePostForm";
+import CreateMediaForm from "../CreatePost/PostMedia";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -56,18 +57,13 @@ function ProfileButton({ user }) {
 
       {/* Need to add create component */}
       {user && (
-  <OpenModalButton
-
-    modalComponent={<CreatePostForm />}
-    onItemClick={closeMenu}
-  i className="fas fa-pencil-alt fa-lg"
-  >
-
-  </OpenModalButton>
-)}
-
-
-
+        <OpenModalButton
+          modalComponent={<CreatePostForm />}
+          onItemClick={closeMenu}
+          i className="fas fa-pencil-alt fa-lg"
+        >
+        </OpenModalButton>
+      )}
 
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

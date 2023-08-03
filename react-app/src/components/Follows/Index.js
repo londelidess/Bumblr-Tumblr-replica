@@ -28,12 +28,15 @@ function FollowsList() {
 
     return (
         <div className="follows-container">
-            <h2>Your Following</h2>
+
+            <h2 className="follow-title">Your Following</h2>
+
+
             <div className="following-list">
                 {loggedInUserFollowing.map((user) => (
                     <div key={user.id} className="user-item">
-                        <img src={stock} alt="Avatar" className="tiny-image" />
-                        <span>{user.username}</span>
+                        <img src={stock} alt="follow-avatar" className="follow-tiny-image" />
+                        <span className="follow-user">{user.username}</span>
                         {loggedInUserId !== user.id && (
                             isUserFollowing(user.id) ? (
                                 <button onClick={() => handleUnfollow(user.id)}>Unfollow</button>
@@ -43,6 +46,7 @@ function FollowsList() {
                         )}
                     </div>
                 ))}
+
             </div>
         </div>
     );
