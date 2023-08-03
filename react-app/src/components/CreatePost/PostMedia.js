@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { thunkCreatePost } from '../../store/post';
+import { thunkCreatePost,fetchAllPosts } from '../../store/post';
 import { thunkAddMediaToPost } from '../../store/media';
 import { useModal } from '../../context/Modal';
     const CreateMediaForm = () => {
@@ -28,6 +28,7 @@ import { useModal } from '../../context/Modal';
             setContent('');
             setMedia_file('');
             setValidationErrors([]);
+            await dispatch(fetchAllPosts())
             closeModal();
         }
         useEffect(() => {
