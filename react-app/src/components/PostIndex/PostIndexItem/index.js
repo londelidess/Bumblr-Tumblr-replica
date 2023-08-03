@@ -118,10 +118,10 @@ const PostIndexItem = ({ post, fromPath }) => {
                     <div className='post-user-follow'>
                         <span className='title-bar-username'>{post.user.username}</span>
                         {currentUser && !isOwnPost && !isCurrentUserFollowingPostUser && (
-                            <button onClick={() => handleFollow(post.user.id)}>Follow</button>
+                            <button className='follow-but' onClick={() => handleFollow(post.user.id)}>Follow</button>
                         )}
                         {currentUser && !isOwnPost && isCurrentUserFollowingPostUser && (
-                            <button onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
+                            <button className='unfollow-but'onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
                         )}
                     </div>
                     <div className='post-index-item-menu'>

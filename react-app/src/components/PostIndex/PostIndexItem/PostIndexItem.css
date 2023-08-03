@@ -12,8 +12,8 @@
 
 .post-index-item-wrapper {
     display: grid;
-    max-width: 614px ;
-    min-width: 614px ;
+    max-width: 614px;
+    min-width: 614px;
     grid-template-columns: 1fr 10fr;
     gap: 20px;
 }
@@ -39,6 +39,16 @@
 
 .title-bar-follow {
     padding-left: 10px;
+}
+
+.follow-but,
+.unfollow-but {
+    background-color: transparent;
+    color: rgb(0, 161, 214);
+    /* Add your desired text color here */
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
 }
 
 .post-index-item-menu {
