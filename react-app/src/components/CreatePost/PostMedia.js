@@ -19,7 +19,7 @@ import { useModal } from '../../context/Modal';
             const formData = new FormData()
             formData.append("content", content)
             formData.append("media_file", media_file)
-            
+
             await dispatch(thunkCreatePost(formData))
             setContent('');
             setMedia_file('');
@@ -36,8 +36,8 @@ return (
             <form className='create-post-form' onSubmit={handleSubmit}
             encType="multipart/form-data" >
                 <div className='media-input'>
-                <label 
-                            className="Post-Media-input" 
+                <label
+                            className="Post-Media-input"
                             htmlFor='image'
                         >
                             Upload Images
@@ -59,7 +59,7 @@ return (
                 />
                 <div className='Create-Form-Submit-btn'>
                 <button className='Create-Post-Submit'>Submit</button>
-                </div>    
+                </div>
             </form>
             </div>
 )

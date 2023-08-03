@@ -7,6 +7,7 @@ import PostIndex from "./components/PostIndex"
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import FollowsList from "./components/Follows/Index"
+import OwnPosts from "./components/PostIndex/OwnPosts"
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={PostIndex} />
           <Route exact path="/following" component={FollowsList} />
+          <Route exact path="/current" component={OwnPosts} />
           <Route path="/login" >
             <LoginFormPage />
           </Route>

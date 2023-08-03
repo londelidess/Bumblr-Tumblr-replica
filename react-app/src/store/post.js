@@ -57,7 +57,7 @@ export const fetchCurrentPosts = () => async (dispatch) => {
   const response = await fetch("/api/posts/current");
   if (response.ok) {
     const { posts } = await response.json();
-    dispatch(setCurrentPosts(posts));
+    return dispatch(setCurrentPosts(posts));
   }
 };
 
