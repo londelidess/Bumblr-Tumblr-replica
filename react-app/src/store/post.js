@@ -86,8 +86,8 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
   if (!response.ok) {
     throw new Error("Failed to create the post.");
   }
-  const  data  = await response.json();
-  console.log("This is post from thunkCreate",data)
+  const data = await response.json();
+  console.log("This is post from thunkCreate", data)
   dispatch(addPost(data.posts));
 };
 
@@ -108,16 +108,25 @@ export const thunkEditPost = (id, content) => async (dispatch) => {
   dispatch(updatePostAction(updatedPost));
 };
 
-export const thunkDeletePostById = (postId) => async (dispatch) => {
-  const response = await fetch(`/api/posts/${postId}`, {
+export const thunkDeletePostById = (post) => async (dispatch) => {
+  const promiseAll = []
+  post.medias.forEach(async media => {
+    const pro = fetch(`/api/medias/${media.id}`, {
+      method: "DELETE",
+    });
+    promiseAll.push(pro);
+  });
+  await Promise.all(promiseAll);
+
+  const response = await fetch(`/api/posts/${post.id}`, {
     method: "DELETE",
   });
 
   if (!response.ok) {
     throw new Error("Failed to delete the post.");
   }
-  dispatch(thunkDeleteMedia(postId));
-  dispatch(removePost(postId));
+  // dispatch(thunkDeleteMedia(postId));
+  dispatch(removePost(post.id));
 };
 
 const initialState = {

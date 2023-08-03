@@ -14,10 +14,15 @@ import LikeIcon from '../../IconCollection/LikeIcon';
 import RePostIcon from '../../IconCollection/RePostIcon';
 import CommentIcon from '../../IconCollection/CommentIcon';
 import SharingIcon from '../../IconCollection/SharingIcon';
+import DeleteConfirmModal from '../../DeleteConfirmModal';
+import OpenModalMenuItem from '../OpenModalMenuItem';
+import { useModal } from "../../../context/Modal";
+
 
 const getPost = (state) => Object.values(state.posts.allPosts);
 
 const PostIndexItem = ({ post, fromPath }) => {
+    const { closeModal } = useModal();
     const getCurrentUser = (state) => state.session.user;
     const currentUser = useSelector(getCurrentUser);
     const history = useHistory();
@@ -90,6 +95,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                 dispatch(fetchFollowingPosts());
                 dispatch(fetchAllPosts());
             });
+            closeModal();
         } catch (error) {
             console.log(error)
         }
@@ -137,7 +143,12 @@ const PostIndexItem = ({ post, fromPath }) => {
                 {currentUser && currentUser.id === post.user.id &&
                     (
                         <div className='postitem-delete-edit-wrapper'>
-                            <DeleteIcon />
+                            <OpenModalMenuItem
+                                itemType='delete_icon'
+                                itemText="Delete"
+                                // onItemClick={closeMenu}
+                                modalComponent={<DeleteConfirmModal post={post} type='post' />}
+                            />
                             <EditIcon />
                         </div>
                     )
@@ -179,7 +190,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                         <div>
                                             avatar area
                                         </div>
-                                        
+
                                         {currentUser &&
                                             (
                                                 <form onSubmit={handleCommentSubmit}>
@@ -211,9 +222,21 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                 </div>
                                                 {currentUser && currentUser.id === item.user_id &&
                                                     (
-                                                        <div className='comment-delete-button' onClick={() => handleDeleteComment(item.id)}>
-                                                            <DeleteIcon />
+                                                        <div className='comment-delete-button'>
+                                                            <OpenModalMenuItem
+                                                                itemType='delete_icon'
+                                                                itemText="Delete"
+                                                                // onItemClick={closeMenu}
+                                                                modalComponent={<DeleteConfirmModal comment={item} type='comment' />}
+                                                            />
+                                                            <OpenModalMenuItem
+                                                                itemType='delete_icon'
+                                                                itemText="Delete"
+                                                                // onItemClick={closeMenu}
+                                                                modalComponent={<DeleteConfirmModal comment={item} type='comment' />}
+                                                            />
                                                         </div>
+
                                                     )
                                                 }
 
