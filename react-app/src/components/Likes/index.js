@@ -1,45 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPostLikes, thunkAddLike, thunkRemoveLike } from "../path/to/likesReducer";
+import { fetchPostLikes, thunkAddLike, thunkRemoveLike, fetchUserLikes } from "../../store/like";
+import LikeButton from "./Button";
 
-const Likes = ({ postId }) => {
+
+const Likes = ({ post}) => {
     const dispatch = useDispatch();
-    const postLikes = useSelector((state) => state.likes.postLikes);
     const userLikes = useSelector((state) => state.likes.userLikes);
     const loggedInUserId = useSelector((state) => state.session.user && state.session.user.id);
+    // const post = useSelector((state) => state.posts.postId)
+
+
+    let originalLikeId = null
+    post.likes.forEach(like => {
+        if (like.user_id === loggedInUserId) {
+            originalLikeId = like.id
+        }
+    })
+    const [likeId, setLikeId] = useState(originalLikeId)
 
     useEffect(() => {
-        // Fetch post likes when the component mounts
-        dispatch(fetchPostLikes(postId));
-    }, [dispatch, postId]);
+        dispatch(fetchPostLikes(post.id));
+        dispatch(fetchUserLikes(loggedInUserId));
+    }, [dispatch, post.id, loggedInUserId]);
+
+
 
     const isUserLiked = () => {
-        return userLikes.some((like) => like.postId === postId);
+        return userLikes.some((like) => like.post_id === post.id);
     };
 
-    const handleLike = () => {
-        // Dispatch the thunk to add a like
-        dispatch(thunkAddLike(postId));
-    };
-
-    const handleUnlike = () => {
-        // Find the user's like for this post
-        const userLike = userLikes.find((like) => like.postId === postId);
-
-        if (userLike) {
-            // Dispatch the thunk to remove the like
-            dispatch(thunkRemoveLike(userLike.id));
+    const handleLike = async () =>  {
+        console.log(isUserLiked())
+        if (isUserLiked()) {
+            dispatch(thunkRemoveLike(likeId));
+        } else {
+            const data = await dispatch(thunkAddLike(post.id));
+            setLikeId(data.id)
+            dispatch(fetchUserLikes(loggedInUserId))
         }
     };
 
     return (
         <div className="likes-container">
-            <div className="likes-count">{postLikes.length} Likes</div>
-            {!isUserLiked() ? (
-                <button onClick={handleLike}>Like</button>
-            ) : (
-                <button onClick={handleUnlike}>Unlike</button>
-            )}
+            <LikeButton isLiked={isUserLiked()} onLike={handleLike} />
         </div>
     );
 };
