@@ -72,7 +72,7 @@ function ProfileButton({ user }) {
             {/* <div>{user.email}</div> */}
             {/* Need the likes component */}
             <div className="user-like">
-              <Link to="">Likes</Link>
+              <Link to="/likes">Likes</Link>
             </div>
             {/* Need the follow component */}
             <div className="user-follow">

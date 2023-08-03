@@ -12,12 +12,14 @@ const EditPostForm = ({ post }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal()
+    const [rerender, setRerender] = useState(1);
 
     const handleMediaDelete = async (mediaId) => {
         console.log(mediaId)
         await dispatch(thunkDeleteMedia(mediaId));
         await dispatch(fetchFollowingPosts())
         await dispatch(fetchAllPosts());
+        setRerender(prevState => prevState + 1);
     }
 
     const handleSubmit = async (e) => {
@@ -49,7 +51,7 @@ const EditPostForm = ({ post }) => {
     }, [content])
 
     return (
-        <div className='form-container'>
+        <div className='form-container' key={rerender}>
             {
                 post.medias.map((media, index) => (
                     <div key={media.id}>
