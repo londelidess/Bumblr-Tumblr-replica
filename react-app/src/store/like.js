@@ -50,6 +50,7 @@ export const thunkAddLike = (postId) => async (dispatch) => {
     if (response.ok) {
         const like = await response.json();
         dispatch(addLike(like));
+        return like
     } else {
         throw new Error('Failed to add like.');
     }

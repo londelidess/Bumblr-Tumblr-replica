@@ -8,12 +8,14 @@ import DeleteIcon from "../../IconCollection/DeleteIcon"
 import ThreeDotsIcon from "../../IconCollection/ThreeDotsIcon"
 import EditIcon from '../../IconCollection/EditIcon';
 
+import Likes from '../../Likes';
 import './PostIndexItem.css';
 import stock from '../../../images/stock.png'
 import LikeIcon from '../../IconCollection/LikeIcon';
 import RePostIcon from '../../IconCollection/RePostIcon';
 import CommentIcon from '../../IconCollection/CommentIcon';
 import SharingIcon from '../../IconCollection/SharingIcon';
+import likesReducer from '../../../store/like';
 import DeleteConfirmModal from '../../DeleteConfirmModal';
 import OpenModalMenuItem from '../OpenModalMenuItem';
 import { useModal } from "../../../context/Modal";
@@ -140,7 +142,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                     </div>
                 </div>
 
-                {currentUser && currentUser.id === post.user.id &&
+                { currentUser && currentUser.id === post.user.id &&
                     (
                         <div className='postitem-delete-edit-wrapper'>
                             <OpenModalMenuItem
@@ -163,7 +165,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <SharingIcon />
                         <CommentIcon />
                         <RePostIcon />
-                        <LikeIcon />
+                        <Likes post={post}  />
                     </div>
                 </div>
 
