@@ -6,7 +6,7 @@ import { thunkCreateComment, thunkRemoveComment } from '../../../store/comment'
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../../store/follow";
 import { fetchPostLikes } from "../../../store/like";
 import ThreeDotsIcon from "../../IconCollection/ThreeDotsIcon"
-import EditIcon from '../../IconCollection/EditIcon';
+import EditPostForm from '../../CreatePost/EditPostForm'
 
 import Likes from '../../Likes';
 import './PostIndexItem.css';
@@ -142,16 +142,21 @@ const PostIndexItem = ({ post, fromPath }) => {
                     </div>
                 </div>
 
-                { currentUser && currentUser.id === post.user.id &&
+                {currentUser && currentUser.id === post.user.id &&
                     (
                         <div className='postitem-delete-edit-wrapper'>
                             <OpenModalMenuItem
                                 itemType='delete_icon'
-                                itemText="Delete"
+                                // itemText="Delete"
                                 // onItemClick={closeMenu}
                                 modalComponent={<DeleteConfirmModal post={post} type='post' />}
                             />
-                            <EditIcon />
+                            <OpenModalMenuItem
+                                itemType='edit_icon'
+                                modalComponent={<EditPostForm post={post} />}
+                                // onItemClick={closeMenu}
+                                // i className="fas fa-pencil-alt fa-lg"
+                            />
                         </div>
                     )
                 }
@@ -165,7 +170,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <SharingIcon />
                         <CommentIcon />
                         <RePostIcon />
-                        <Likes post={post}  />
+                        <Likes post={post} />
                     </div>
                 </div>
 
@@ -251,16 +256,16 @@ const PostIndexItem = ({ post, fromPath }) => {
                             {commentAreaOption === "show_likes" &&
                                 (<div className='scrolldown-right'>
                                     {post.likes.map((item, index) => (
-                                        <div>
-                                            <div className='postItem-like' key={index}>
-                                                <div>
-                                                    avatar area
-                                                </div>
-                                                <div>
-                                                    {item.username}
-                                                </div>
+
+                                        <div className='postItem-like' key={index}>
+                                            <div>
+                                                avatar area
+                                            </div>
+                                            <div>
+                                                {item.username}
                                             </div>
                                         </div>
+
 
                                     ))}
                                 </div>)

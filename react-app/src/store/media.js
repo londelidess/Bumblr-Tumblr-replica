@@ -37,7 +37,7 @@ export const thunkAddMediaToPost = (postId, mediaFile) => async (dispatch) => {
 
 export const thunkDeleteMedia = (mediaId) => async (dispatch) => {
     try {
-        const response = await fetch(`/medias/${mediaId}`, {
+        const response = await fetch(`/api/medias/${mediaId}`, {
             method: "DELETE",
         });
 
