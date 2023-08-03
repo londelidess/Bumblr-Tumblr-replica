@@ -23,6 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={PostIndex} />
+          <Route exact path="/likes" component={PostIndex} />
           <Route exact path="/following" component={FollowsList} />
           <Route exact path="/current" component={OwnPosts} />
           <Route exact path="/NewMedia" component={CreateMediaForm} />
