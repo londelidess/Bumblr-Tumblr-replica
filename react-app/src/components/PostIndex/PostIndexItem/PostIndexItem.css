@@ -4,6 +4,7 @@
     place-self: center;
     /* min-width: 340px;
     max-width: 500px; */
+    width: 100%;
     max-height: auto;
     border-radius: 5px;
     background-color: lightgray;
@@ -70,6 +71,9 @@
 }
 
 .post-index-item-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-right: 20px;
 }
 

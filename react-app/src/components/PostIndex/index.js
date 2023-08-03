@@ -19,6 +19,16 @@ const PostIndex = () => {
     const followingPosts = useSelector(getFollowingPosts);
     const dispatch = useDispatch();
     const [displayOption, setDisplayOption] = useState("show_following");
+    followingPosts.sort((post1, post2) => {
+        const a = new Date(post1.postDate);
+        const b = new Date(post2.postDate);
+        return b - a;
+    });
+    allPosts.sort((post1, post2) => {
+        const a = new Date(post1.postDate);
+        const b = new Date(post2.postDate);
+        return b - a;
+    });
 
     const showForYouTab = () => {
         setDisplayOption("show_foryou")
