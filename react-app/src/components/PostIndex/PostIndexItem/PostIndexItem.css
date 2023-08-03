@@ -158,3 +158,16 @@
     height: 400px;
     overflow-y: auto;
 }
+
+.comment-error {
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.comment-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
