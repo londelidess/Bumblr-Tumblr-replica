@@ -184,7 +184,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <button className='unused-but' onClick={handleReserveClick}>
                             <SharingIcon />
                         </button>
-                        <button className='unused-but'onClick={handleReserveClick}>
+                        <button className='unused-but'onClick={toggleShowCommentArea}>
                             <CommentIcon />
                         </button>
                         <button className='unused-but' onClick={handleReserveClick}>
