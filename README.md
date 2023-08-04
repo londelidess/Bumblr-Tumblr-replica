@@ -1,7 +1,8 @@
 # `Bumblr <social-network-service>`
 
 ## INTRODUCTION
-![homepage][def2]
+![homepage][def]
+![homepage2][def2]
 
 Front-End
 Designing the reducer with an initial state certainly amplified the efficiency of my project. However, visualizing the Redux store shape presented a significant challenge. I often found myself needing to modify it in the middle of production, which in turn required alterations in various file logics to grab store data. This process, albeit inefficient, provided me with valuable experience in managing data types.
@@ -12,10 +13,12 @@ Moving forward, I aim to invest more time in the comprehensive planning of both 
 ## Database Schema Design
 
 ![db-schema](https://github.com/londelidess/group-6-project/assets/121207128/5648875e-ad9a-43db-b989-324765ce7a65)
+![db-schema][def3]
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
 
-[def]: ./images/
-[def2]:./images/
+[def]: ./images/Bumblr-login.png
+[def2]:./images/Bumblr-main.png
+[def3]:./images/Bumblr-schema.png
