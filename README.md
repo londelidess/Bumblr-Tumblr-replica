@@ -5,11 +5,11 @@
 ![homepage2][def2]
 
 ## Link to website 
-https://group-social-network-service.onrender.com
+[v](https://bv-group-project.onrender.com)
 
 Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other.
 
-
+## Feature List
 ## 1. New account creation, log in, log out, and guest/demo log in
 
 * Users can sign up, log in, and log out.
@@ -49,7 +49,7 @@ Bumblr, a Tumblr replica, is a platform where users can share posts, engage in d
 ## Database Schema Design
 ![db][def3]
 
-## 1. Feature List
+
 
 ## API Documentation
 
@@ -161,9 +161,107 @@ Bumblr, a Tumblr replica, is a platform where users can share posts, engage in d
 * Logged-in users can unfollow another user.
   - `DELETE api/follows/<user_id>`
 
-## USER AUTHENTICATION/AUTHORIZATION
+##  React Components
+./CreateBar/   ./DeleteConfirmModal/  ./Footer/          ./Likes/           ./LoginFormPage/  ./OpenModalButton/  ./SignupFormModal/  ./auth/
+./CreatePost/  ./Follows/             ./IconCollection/  ./LoginFormModal/  ./Navigation/     ./PostIndex/        ./SignupFormPage/
+##  Redux Store Shape
+store = {
+  session: {},
+  posts: {
+     allPosts: {},
+     currentPost:{},
+     singlePost: {},
+  },
+
+  comments: {
+   
+    post: {
+     postData
+    },
+    user: {
+     userData
+    },
+  },
+  likes: {
+     postLikes: [],
+    userLikes: [],
+   },
+  follows: { 
+    loggedInUserFollowing: [],
+    userFollowing: []
+  },
+};
+
+
+## Front-end Routes Documentation
+
+1. **Post Index**
+   - **Path**: /
+   - **Component**: PostIndex
+   - **Directory**: ./PostIndex/
+   - **Description**: Displays the main post index or landing page.
+
+2. **User Likes**
+   - **Path**: /likes
+   - **Component**: UserLikes
+   - **Directory**: ./Likes/
+   - **Description**: Displays all the likes by the logged-in user.
+
+3. **Follows List**
+   - **Path**: /following
+   - **Component**: FollowsList
+   - **Directory**: ./Follows/
+   - **Description**: Displays a list of users that the current user is following.
+
+4. **User Current**
+   - **Path**: /current
+   - **Component**: UserCurrent
+   - **Directory**: Not Provided
+   - **Description**: Shows posts or other related content specific to the currently logged-in user.
+
+5. **Create Media Form**
+   - **Path**: /NewMedia
+   - **Component**: CreateMediaForm
+   - **Directory**: ./CreatePost/ or ./CreateBar/
+   - **Description**: Provides a form for users to create and upload new media.
+
+6. **Login Form**
+   - **Path**: /login
+   - **Component**: LoginFormPage
+   - **Directory**: ./LoginFormPage/ or ./LoginFormModal/
+   - **Description**: Displays the login form for users.
+
+7. **Signup Form**
+   - **Path**: /signup
+   - **Component**: SignupFormPage
+   - **Directory**: ./SignupFormPage/ or ./SignupFormModal/
+   - **Description**: Presents the signup form for new users.
+
+## Additional Components/Directories:
+
+- **Delete Confirm Modal**: ./DeleteConfirmModal/
+- **Footer**: ./Footer/
+- **Icon Collection**: ./IconCollection/
+- **Navigation**: ./Navigation/
+- **Open Modal Button**: ./OpenModalButton/
+- **Auth**: ./auth/
+
+
+## Technology we used 
+Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
+
+## Development Challenges:
+
+- **Media Upload and Post Creation**: 
+  - **Redux**: Maintaining the state of the media being uploaded, especially when dealing with multiple file uploads, and reflecting that in the global state was a challenge.
+  - **Flask Integration**: Making sure that the uploaded files are processed and stored correctly on the Flask backend.
+  - **Error Handling**: Providing clear error messages to the user in cases of failed uploads or unsupported file formats.
+
+
+By expanding on the challenges and considerations for each feature, especially the media upload and post creation, the documentation gives a clearer picture of the complexities involved. Adjust the specifics to better match your project's details and challenges.
 
 
 [def]: ./images/Bumblr-login.png
 [def2]:./images/Bumblr-main.png
 [def3]:./images/Bumblr-schema.png
+
