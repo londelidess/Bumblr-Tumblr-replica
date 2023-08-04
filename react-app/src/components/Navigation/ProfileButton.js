@@ -74,6 +74,9 @@ function ProfileButton({ user }) {
             <div className="user-like">
               <Link to="/likes">Likes</Link>
             </div>
+            <div className="user-like">
+              <Link to="/current">Posts</Link>
+            </div>
             {/* Need the follow component */}
             <div className="user-follow">
               <Link to="/following">Followers</Link>

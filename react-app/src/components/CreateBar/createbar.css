@@ -87,12 +87,14 @@
 
 .fa-quote-left {
     color: orange;
-    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .fa-link {
     color: green;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .fa-comment {

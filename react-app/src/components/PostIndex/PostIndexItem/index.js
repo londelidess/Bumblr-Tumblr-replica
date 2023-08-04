@@ -35,6 +35,9 @@ const PostIndexItem = ({ post, fromPath }) => {
     const loggedInUserId = useSelector((state) => state.session.user && state.session.user.id);
     const [commentContent, setCommentContent] = useState("");
     const [commentAreaOption, setCommentAreaOption] = useState("show_comments");
+    const [error, setError] = useState("");
+
+
     post.comments.sort((comment1, comment2) => {
         const a = new Date(comment1.post_date);
         const b = new Date(comment2.post_date);
@@ -79,12 +82,19 @@ const PostIndexItem = ({ post, fromPath }) => {
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
+
+        if (commentContent.length < 10 || commentContent.length > 200) {
+            setError("Comment must be between 10 and 200 characters");
+            return;
+        }
         const comment_tobe_added = { "content": commentContent };
         try {
             await dispatch(thunkCreateComment(post.id, comment_tobe_added))
             await dispatch(fetchLoggedInUserFollowing());
             await dispatch(fetchFollowingPosts())
             await dispatch(fetchAllPosts());
+            setCommentContent("");
+            setError("");
         } catch (error) {
             console.log(error)
         }
@@ -118,10 +128,10 @@ const PostIndexItem = ({ post, fromPath }) => {
                     <div className='post-user-follow'>
                         <span className='title-bar-username'>{post.user.username}</span>
                         {currentUser && !isOwnPost && !isCurrentUserFollowingPostUser && (
-                            <button onClick={() => handleFollow(post.user.id)}>Follow</button>
+                            <button className='follow-but' onClick={() => handleFollow(post.user.id)}>Follow</button>
                         )}
                         {currentUser && !isOwnPost && isCurrentUserFollowingPostUser && (
-                            <button onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
+                            <button className='unfollow-but' onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
                         )}
                     </div>
                     <div className='post-index-item-menu'>
@@ -154,8 +164,8 @@ const PostIndexItem = ({ post, fromPath }) => {
                             <OpenModalMenuItem
                                 itemType='edit_icon'
                                 modalComponent={<EditPostForm post={post} />}
-                                // onItemClick={closeMenu}
-                                // i className="fas fa-pencil-alt fa-lg"
+                            // onItemClick={closeMenu}
+                            // i className="fas fa-pencil-alt fa-lg"
                             />
                         </div>
                     )
@@ -195,14 +205,15 @@ const PostIndexItem = ({ post, fromPath }) => {
                                 (<div >
                                     <div className='comment-form-wrapper'>
                                         <div>
-                                            avatar area
+                                            <img src={stock} alt="Avatar" className="comment-tiny-image" />
                                         </div>
 
                                         {currentUser &&
                                             (
-                                                <form onSubmit={handleCommentSubmit}>
+                                                <form className='comment-form-container' onSubmit={handleCommentSubmit}>
                                                     <div className='comment-form-content'>
                                                         <input
+                                                            className='comment-submit'
                                                             type="text"
                                                             value={commentContent}
                                                             placeholder='Send something nice'
@@ -210,6 +221,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                         />
                                                     </div>
                                                     <div><button>Reply</button></div>
+                                                    {error && <p className="comment-error">{error}</p>}
                                                 </form>
                                             )
                                         }
@@ -219,7 +231,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                         {post.comments.map((item, index) => (
                                             <div className='postItem-comment' key={index}>
                                                 <div>
-                                                    avatar area
+                                                    <img src={stock} alt="Avatar" className="comment-tiny-image" />
                                                 </div>
                                                 <div>
                                                     {item.username}
@@ -259,7 +271,7 @@ const PostIndexItem = ({ post, fromPath }) => {
 
                                         <div className='postItem-like' key={index}>
                                             <div>
-                                                avatar area
+                                                <img src={stock} alt="Avatar" className="comment-tiny-image" />
                                             </div>
                                             <div>
                                                 {item.username}

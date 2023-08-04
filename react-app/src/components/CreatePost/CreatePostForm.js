@@ -22,22 +22,22 @@ const CreatePostForm = () => {
         formData.append("content", content);
       await dispatch(thunkCreatePost(formData))
         setContent('');
-        // setValidationErrors([]);
+        setValidationErrors([]);
         await dispatch(fetchAllPosts())
         // history.push('/') 
         closeModal()
 
     }else{
-        setValidationErrors([errors]);
+        setValidationErrors(errors);
     }
     }
 
-useEffect(() => {
-    const errors = [];
-    if (!content.length) errors.push('Content field is required');
-    if (content.length < 5 || content.length > 2000) errors.content = 'Content text must be more than 5 characters and less than 2000'
-    setValidationErrors(errors);
-}, [content])
+// useEffect(() => {
+//     const errors = [];
+//     if (!content.length) errors.push('Content field is required');
+//     if (content.length < 5 || content.length > 2000) errors.content = 'Content text must be more than 5 characters and less than 2000'
+//     setValidationErrors(errors);
+// }, [content])
 return (
     <div className='form-container'>
         <form className='create-post-form' onSubmit={handleSubmit}>

@@ -25,12 +25,15 @@ const EditPostForm = ({ post }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errors = {}
-        if (!content) errors.content = 'Content field is required'
+        if (!content) {
+            errors.content = 'Content field is required';
+          } else if (content.length < 5 || content.length > 2000) {
+            errors.content = 'Content text must be more than 5 characters and less than 2000';
+          }
+        if (Object.keys(errors).length === 0) {
 
         const formData = new FormData()
         formData.append("content", content)
-        console.log("content is ")
-        console.log(content)
         formData.append("media_file", media_file)
 
         const postData = await dispatch(thunkEditPost(post.id, formData));
@@ -42,13 +45,16 @@ const EditPostForm = ({ post }) => {
         setValidationErrors([]);
         await dispatch(fetchAllPosts())
         closeModal();
+    }else{
+        setValidationErrors(errors)    
     }
+}
 
-    useEffect(() => {
-        const errors = [];
-        if (!content.length) errors.push("Please enter a post caption!");
-        setValidationErrors(errors);
-    }, [content])
+    // useEffect(() => {
+    //     const errors = [];
+    //     if (!content.length) errors.push("Content field is required");
+    //     setValidationErrors(errors);
+    // }, [content])
 
     return (
         <div className='form-container' key={rerender}>
