@@ -37,7 +37,7 @@ Direct Messaging: Users can privately message each other.
 ![db][def3]
 ## API Documentation
 
-## Authentication
+### Authentication
 
 * Users can check if they're authenticated.
   - `GET api/auth`
@@ -56,7 +56,7 @@ Direct Messaging: Users can privately message each other.
 
 ---
 
-## Session
+### Session
 
 * Users can view all users.
   - `GET api/posts`
@@ -66,7 +66,7 @@ Direct Messaging: Users can privately message each other.
 
 ---
 
-## Posts
+### Posts
 
 * Users can view all posts.
   - `GET api/posts/all`
@@ -96,7 +96,7 @@ Direct Messaging: Users can privately message each other.
 
 ---
 
-## Comments
+### Comments
 
 * Users can retrieve all comments for a specific post.
   - `GET api/comments/<post_id>`
@@ -112,7 +112,7 @@ Direct Messaging: Users can privately message each other.
 
 ---
 
-## Likes
+### Likes
 
 * Users can view likes on a specific post.
   - `GET api/likes/<post_id>`
@@ -131,7 +131,7 @@ Direct Messaging: Users can privately message each other.
 
 ---
 
-## Follows
+### Follows
 
 * Logged-in users can retrieve a list of users they are following.
   - `GET api/follows/following`
