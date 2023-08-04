@@ -12,7 +12,6 @@ Another hurdle was figuring out how to efficiently use multiple thunk actions at
 Moving forward, I aim to invest more time in the comprehensive planning of both frontend and backend aspects simultaneously. This will prevent any loss of direction during the production phase and further enhance the efficiency of my projects. It's evident to me now that successful development is largely about managing and connecting data types accurately across the entire stack.
 ## Database Schema Design
 
-![db-schema](https://github.com/londelidess/group-6-project/assets/121207128/5648875e-ad9a-43db-b989-324765ce7a65)
 ![db-schema][def3]
 ## API Documentation
 
