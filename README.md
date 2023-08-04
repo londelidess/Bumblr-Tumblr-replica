@@ -5,7 +5,7 @@
 ![homepage2][def2]
 
 ## Link to website 
-[v](https://bv-group-project.onrender.com)
+https://bv-group-project.onrender.com
 
 Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other.
 
