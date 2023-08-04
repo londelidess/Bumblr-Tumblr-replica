@@ -155,7 +155,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                     )
                                 }
                                 {!item.media_url.endsWith("mp4") &&
-                                    <img alt='' src={`${item.media_url}`} />
+                                    <img alt='image' src={`${item.media_url}`} />
                                 }
                             </div>
                         ))}
