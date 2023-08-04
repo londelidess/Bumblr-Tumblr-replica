@@ -3,7 +3,28 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+/*
+@keyframes colorChange {
+    0% {
+        background-color: #009aff;
+    }
+
+    50% {
+        background-color: #005a82;
+        /* A darker shade of blue */
+    /* } */
+
+    /* 100% {
+        background-color: #009aff;
+    } */
+/* } */
+
+
+/* html {
+    background-color: #009aff;
+    animation: colorChange 5s infinite;
+} */
 
 html {
-    background-color: rgba(10, 86, 199, 1);
+    background: linear-gradient(135deg, #054166, #0075b8);
 }

@@ -37,8 +37,9 @@ function CommentEditModal({ comment }) {
                 <h1>Edit Your Comment</h1>
             </div>
             <form onSubmit={handleCommentEdit}>
-                <div className='comment-form-content'>
+                <div className='comment-container'>
                     <input
+                    className="edit-comment-input"
                         type="text"
                         value={commentContent}
                         placeholder='Send something nice'
@@ -46,7 +47,7 @@ function CommentEditModal({ comment }) {
                     />
                 </div>
                 <div className="delete-modal-button-wrapper">
-                    <button className="delete-button" >Save your comment</button>
+                    <button className="edit-comment-submit" >Save your comment</button>
                     {/* <button className="cancelDelete-button" onClick={handleCancel}>Cancel</button> */}
                 </div>
             </form>

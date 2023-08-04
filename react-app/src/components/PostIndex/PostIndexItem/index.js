@@ -44,6 +44,10 @@ const PostIndexItem = ({ post, fromPath }) => {
         return b - a;
     });
 
+    const handleReserveClick = () => {
+        alert('Feature coming soon');
+    };
+
     const toggleShowCommentArea = () => {
         setShowCommentArea(prevState => !prevState)
     };
@@ -177,9 +181,15 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <span className='tail-bar-notes' onClick={toggleShowCommentArea}>{post.likes_count + post.comments_count} notes</span>
                     </div>
                     <div className='post-index-item-icons'>
-                        <SharingIcon />
-                        <CommentIcon />
-                        <RePostIcon />
+                        <button className='unused-but' onClick={handleReserveClick}>
+                            <SharingIcon />
+                        </button>
+                        <button className='unused-but'onClick={handleReserveClick}>
+                            <CommentIcon />
+                        </button>
+                        <button className='unused-but' onClick={handleReserveClick}>
+                            <RePostIcon />
+                        </button>
                         <Likes post={post} />
                     </div>
                 </div>
@@ -220,7 +230,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                             onChange={(e) => setCommentContent(e.target.value)}
                                                         />
                                                     </div>
-                                                    <div><button>Reply</button></div>
+                                                    <div><button className='comment-reply'>Reply</button></div>
                                                     {error && <p className="comment-error">{error}</p>}
                                                 </form>
                                             )

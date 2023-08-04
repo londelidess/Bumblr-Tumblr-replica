@@ -12,7 +12,7 @@ const LikeButton = ({ isLiked, onLike }) => {
     }, [isLiked]);
 
     const handleClick = () => {
-        setLiked((prevLiked) => !prevLiked); 
+        setLiked((prevLiked) => !prevLiked);
         setIconColor((prevColor) => (prevColor === "red" ? "black" : "red"));
 
         onLike();

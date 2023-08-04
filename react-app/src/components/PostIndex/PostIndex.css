@@ -36,6 +36,11 @@
     cursor: pointer;
 }
 
+.foryou_tab:hover,
+.following_tab:hover {
+    color: #00BFFF;
+}
+
 
 
 .foryou_following_tabs {
