@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -18,10 +19,11 @@
 }
 
 .following-list {
-
+    flex-grow: 1;
     border-radius: 12px;
     border: 1px solid #ccc;
     padding: 10px;
+    overflow-y: auto;
 
 }
 

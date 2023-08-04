@@ -61,7 +61,7 @@ return (
                         className='Post-Media-input'
                         id="image"
                         type="file"
-                        accept="image/*"
+                        accept="image/*, .mp4"
                         onChange={(e) => setMedia_file(e.target.files[0])}
                     >
                     </input>

@@ -147,7 +147,16 @@ const PostIndexItem = ({ post, fromPath }) => {
                     <div className='postItem-img-wrapper'>
                         {post.medias.map((item, index) => (
                             <div className='postItem-img' key={index}>
-                                <img alt='house' src={`${item.media_url}`} />
+                                {item.media_url.endsWith("mp4") &&
+                                    (
+                                        <video controls width="490" height="360">
+                                            <source src={`${item.media_url}`} type="video/mp4" />
+                                        </video>
+                                    )
+                                }
+                                {!item.media_url.endsWith("mp4") &&
+                                    <img alt='' src={`${item.media_url}`} />
+                                }
                             </div>
                         ))}
                     </div>
@@ -181,15 +190,15 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <span className='tail-bar-notes' onClick={toggleShowCommentArea}>{post.likes_count + post.comments_count} notes</span>
                     </div>
                     <div className='post-index-item-icons'>
-                        <button className='unused-but' onClick={handleReserveClick}>
+                         {/* <button className='unused-but' onClick={handleReserveClick}>
                             <SharingIcon />
-                        </button>
-                        <button className='unused-but'onClick={handleReserveClick}>
+                        </button> */}
+                        <button className='unused-but' onClick={toggleShowCommentArea}>
                             <CommentIcon />
                         </button>
-                        <button className='unused-but' onClick={handleReserveClick}>
+                         {/* <button className='unused-but' onClick={handleReserveClick}>
                             <RePostIcon />
-                        </button>
+                        </button> */}
                         <Likes post={post} />
                     </div>
                 </div>
@@ -203,7 +212,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                     <CommentIcon />
                                 </div>
                                 <div>{post.comments_count}</div>
-                                <RePostIcon />
+                                {/* <RePostIcon /> */}
                                 <div className='svg-likes' onClick={showLikeTab}>
                                     <LikeIcon />
                                 </div>

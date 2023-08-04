@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
 import "./Follow.css";
 import stock from '../../images/stock.png'
-
+import About from '../Footer'
 function FollowsList() {
     const dispatch = useDispatch();
     const loggedInUserFollowing = useSelector((state) => state.follows.loggedInUserFollowing);
@@ -50,6 +50,7 @@ function FollowsList() {
                 ))}
 
             </div>
+            <About />
         </div>
     );
 }

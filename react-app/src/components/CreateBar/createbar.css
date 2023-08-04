@@ -64,6 +64,17 @@
     padding-right: 20px;
 }
 
+.create-bar-video .fas {
+    background: transparent;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding-right: 20px;
+}
+
 
 .create-bar-camera .fa {
     background: transparent;
@@ -81,9 +92,9 @@
     margin-left: 15px;
 }
 
-.create-bar-text {
-    margin-left: px;
-}
+
+
+
 
 .fa-quote-left {
     color: orange;
@@ -107,10 +118,12 @@
     margin-bottom: 5px;
 }
 
-.create-bar-button .fa-video {
+.create-bar-video .fa-video {
     color: pink;
     margin-bottom: 5px;
 }
+
+
 
 
 .create-bar-post .fa:hover,
@@ -134,5 +147,3 @@
         transform: translateY(-5px);
     }
 }
-
-

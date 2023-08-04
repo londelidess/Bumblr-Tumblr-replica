@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchAllPosts, thunkEditPost, fetchFollowingPosts } from '../../store/post';
+import { fetchAllPosts, thunkEditPost, fetchFollowingPosts, fetchPostById } from '../../store/post';
 import { thunkAddMediaToPost, thunkDeleteMedia } from '../../store/media';
 import { useModal } from '../../context/Modal';
 import DeleteIcon from '../IconCollection/DeleteIcon';
@@ -12,14 +12,14 @@ const EditPostForm = ({ post }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal()
-    const [rerender, setRerender] = useState(1);
+    const [post1, setPost1] = useState(post);
 
     const handleMediaDelete = async (mediaId) => {
-        console.log(mediaId)
         await dispatch(thunkDeleteMedia(mediaId));
         await dispatch(fetchFollowingPosts())
         await dispatch(fetchAllPosts());
-        setRerender(prevState => prevState + 1);
+        const post2 = await dispatch(fetchPostById(post.id));
+        setPost1(post2);
     }
 
     const handleSubmit = async (e) => {
@@ -57,9 +57,9 @@ const EditPostForm = ({ post }) => {
     // }, [content])
 
     return (
-        <div className='form-container' key={rerender}>
+        <div className='form-container'>
             {
-                post.medias.map((media, index) => (
+                post1.medias.map((media, index) => (
                     <div key={media.id}>
                         <div>Media of index {index}</div>
                         <DeleteIcon onClick={() => handleMediaDelete(media.id)}/>
@@ -70,16 +70,16 @@ const EditPostForm = ({ post }) => {
             <form className='create-post-form' onSubmit={handleSubmit}
                 encType="multipart/form-data" >
                 <div className='media-input'>
-                    <label
+                    {/* <label
                         className="Post-Media-input"
                         htmlFor='image'
                     >
                         Upload Images
-                    </label>
+                    </label> */}
                     <input
                         id="image"
                         type="file"
-                        accept="image/*"
+                        accept="image/*, .mp4"
                         onChange={(e) => setMedia_file(e.target.files[0])}
                     >
                     </input>

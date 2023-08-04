@@ -51,10 +51,10 @@ function Navigation({ isLoaded }) {
 							<NavLink to="/" className="icon-item">
 								<i className="fas fa-home fa-lg" /> {/* Home Component*/}
 							</NavLink>
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-envelope fa-lg" /></div>
+							{/* <div className="icon-item" onClick={handleReserveClick}><i className="fas fa-envelope fa-lg" /></div>
 							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-compass fa-lg" /></div>
 							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-video fa-lg" /></div>
-							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-bolt fa-lg" /></div>
+							<div className="icon-item" onClick={handleReserveClick}><i className="fas fa-bolt fa-lg" /></div> */}
 
 						</>
 					)}

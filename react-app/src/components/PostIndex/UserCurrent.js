@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
 import { fetchUserLikes } from '../../store/like';
-
+import About from '../Footer';
 import { useEffect } from 'react';
 import './PostIndex.css';
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
@@ -21,7 +21,7 @@ const UserCurrent = () => {
     const currentPosts = allPosts.filter(post => post.user.id === currentUser.id);
     const dispatch = useDispatch();
     const [displayOption, setDisplayOption] = useState("show_following");
- 
+
     currentPosts.sort((post1, post2) => {
         const a = new Date(post1.postDate);
         const b = new Date(post2.postDate);
@@ -74,7 +74,7 @@ const UserCurrent = () => {
                     </div>
                 )
             }
-     
+            <About />
         </div>
     );
 };

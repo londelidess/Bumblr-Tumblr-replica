@@ -13,7 +13,57 @@
     padding-top: 40px;
     height: auto;
     gap: 40px;
+}
 
+.landing-page-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 614px;
+    padding-top: 40px;
+    height: auto;
+    gap: 40px;
+}
+
+.login-and-signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-button {
+    /* border: 1px red solid; */
+    height: 50px;
+    margin-bottom: 10px;
+    margin-right: 20%;
+    width: 400px;
+    font-size: large;
+    background-color: lightblue;
+}
+
+
+.tumblr-description {
+    font-size: 14px;
+    line-height: 2;
+    color: white;
+    text-align: justify;
+    margin: 10px 0px;
+}
+
+.tumblr-title {
+    color: white;
+    align-items: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.get-started {
+    height: 50px;
+    width: 400px;
+    margin-bottom: 10px;
+    margin-right: 20%;
+    font-size: large;
+    background-color: white;
 }
 
 .posts_option_tab {
