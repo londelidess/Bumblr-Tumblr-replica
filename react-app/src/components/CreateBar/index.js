@@ -68,10 +68,15 @@ const CreateBar = () => {
                     <p className="create-bar-text">Audio</p>
                 </li>
                 <li>
-                    <button className="create-bar-button" onClick={handleReserveClick}>
-                        <i className="fas fa-video"></i>
-                    </button>
-                    <p className="create-bar-text">Video</p>
+                    <div className="create-bar-video">
+                        <OpenModalButton
+                            modalComponent={<CreateMediaForm />}
+                            onItemClick={closeMenu}
+                            i className="fas fa-video"
+                        >
+                        </OpenModalButton>
+                        <p className="create-bar-modal">Video</p>
+                    </div>
                 </li>
             </ul>
         </div>
