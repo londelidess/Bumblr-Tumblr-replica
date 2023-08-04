@@ -70,7 +70,7 @@ const UserLikes = () => {
                         {likePosts.map((post, index) => (
                             <PostIndexItem
                                 post={post}
-                                key={index}
+                                key={post.id}
                             />
                         ))}
                     </div>

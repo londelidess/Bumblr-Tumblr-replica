@@ -31,6 +31,7 @@ const Likes = ({ post }) => {
     const handleLike = async () => {
         if (isUserLiked()) {
             await dispatch(thunkRemoveLike(likeId));
+            await dispatch(fetchUserLikes(loggedInUserId));
             await dispatch(fetchFollowingPosts());
             await dispatch(fetchAllPosts());
         } else {

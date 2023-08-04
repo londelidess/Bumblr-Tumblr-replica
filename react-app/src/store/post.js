@@ -74,6 +74,7 @@ export const fetchPostById = (postId) => async (dispatch) => {
   if (response.ok) {
     const { post } = await response.json();
     dispatch(setPost(post));
+    return post;
   }
 };
 
