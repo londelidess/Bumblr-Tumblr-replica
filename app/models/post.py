@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from .likes import Like
+
 
 
 class Post(db.Model):
@@ -19,11 +19,7 @@ class Post(db.Model):
     likes = db.relationship("Like", back_populates="posts", cascade="all, delete")
     medias = db.relationship("Media", back_populates="posts", cascade="all, delete")
 
-    # post_likes = db.relationship(
-    #     "User",
-    #     secondary=likes,
-    #     back_populates="user_likes"
-    # )
+
 
     def to_dict(self):
         return {

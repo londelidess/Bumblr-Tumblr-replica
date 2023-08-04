@@ -1,7 +1,7 @@
 from app.models import db, Comment, environment, SCHEMA
 from sqlalchemy.sql import text
-# from faker import Faker
-# fake = Faker()
+
+
 from datetime import datetime
 
 formatted_date = datetime.now()

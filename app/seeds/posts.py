@@ -1,16 +1,15 @@
 from app.models import db, Post, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
-# from faker import Faker
-# fake = Faker()
+
 
 formatted_date = datetime.now()
 datetime_formatted = formatted_date.strftime("%Y-%m-%d %H:%M:%S")
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_posts():
     post1 = Post(
-        content="The Future of AI: Impact on Everyday Life", user_id=1, post_date = datetime_formatted,)
+        content="My dream houses...", user_id=1, post_date = datetime_formatted,)
     post2 = Post(
         content="Mindfulness Meditation: Cultivating Peace Amidst Chaos", user_id=1, post_date = datetime_formatted)
     post3 = Post(
@@ -18,7 +17,7 @@ def seed_posts():
     post4 = Post(
         content= "Savoring the Flavors of Thailand: A Culinary Adventure", user_id=2, post_date = datetime_formatted)
     post5 = Post(
-        content= "Embracing Change: Navigating Life's Transformative Crossroads", user_id=3, post_date = datetime_formatted)
+        content= "The Future of AI: Impact on Everyday Life", user_id=3, post_date = datetime_formatted)
 
     posts = [post1, post2, post3, post4, post5]
     add_posts = [db.session.add(post) for post in posts]
