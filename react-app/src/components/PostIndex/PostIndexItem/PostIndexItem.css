@@ -20,7 +20,7 @@
 
 .post-index-item img {
     max-width: 100%;
-    min-width: 90%;
+    min-width: 100%;
     max-height: auto;
     min-height: 20%;
 }
@@ -119,6 +119,8 @@
     height: 500px;
     width: 100%;
 }
+
+
 
 .postItem-comment {
     display: grid;
