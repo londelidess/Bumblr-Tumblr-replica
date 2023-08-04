@@ -181,15 +181,15 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <span className='tail-bar-notes' onClick={toggleShowCommentArea}>{post.likes_count + post.comments_count} notes</span>
                     </div>
                     <div className='post-index-item-icons'>
-                        <button className='unused-but' onClick={handleReserveClick}>
+                        {/* <button className='unused-but' onClick={handleReserveClick}>
                             <SharingIcon />
-                        </button>
+                        </button> */}
                         <button className='unused-but'onClick={handleReserveClick}>
                             <CommentIcon />
                         </button>
-                        <button className='unused-but' onClick={handleReserveClick}>
+                        {/* <button className='unused-but' onClick={handleReserveClick}>
                             <RePostIcon />
-                        </button>
+                        </button> */}
                         <Likes post={post} />
                     </div>
                 </div>
@@ -203,7 +203,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                                     <CommentIcon />
                                 </div>
                                 <div>{post.comments_count}</div>
-                                <RePostIcon />
+                                {/* <RePostIcon /> */}
                                 <div className='svg-likes' onClick={showLikeTab}>
                                     <LikeIcon />
                                 </div>

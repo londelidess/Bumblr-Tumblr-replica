@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import './PostIndex.css';
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
 import CreateBar from "../CreateBar"
-
+import About from '../Footer';
 const getPost = (state) => Object.values(state.posts.allPosts);
 
 const UserLikes = () => {
@@ -76,7 +76,7 @@ const UserLikes = () => {
                     </div>
                 )
             }
-
+            <About/>
         </div>
     );
 };

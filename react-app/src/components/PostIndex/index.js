@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
 import { fetchUserLikes } from '../../store/like';
 
+
 import { useEffect } from 'react';
 import './PostIndex.css';
 import { fetchLoggedInUserFollowing, thunkAddFollow, thunkRemoveFollow } from "../../store/follow";
 import CreateBar from "../CreateBar"
+import About from '../Footer/index';
 
 const getPost = (state) => Object.values(state.posts.allPosts);
 
@@ -61,7 +63,7 @@ const PostIndex = () => {
                 {currentUser && (
                     <div>
                         <div className='foryou_following_tabs'>
-                            <div className='following_tab'  onClick={showFollowingTab}>Following</div>
+                            <div className='following_tab' onClick={showFollowingTab}>Following</div>
                             <div className='foryou_tab' onClick={showForYouTab}>For you</div>
                         </div>
                         <CreateBar />
@@ -108,6 +110,11 @@ const PostIndex = () => {
                     </div>
                 )
             }
+            <div className='about-foot'>
+
+                <About />
+            </div>
+
         </div>
     );
 };
