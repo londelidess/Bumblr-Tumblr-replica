@@ -13,6 +13,7 @@ def seed_follows():
     user8_id = "frank"
     user9_id = "grace"
     user10_id = "hannah"
+    user11_id = "TheZuck"
 
 
 
@@ -26,6 +27,7 @@ def seed_follows():
     user8 = User.query.filter_by(username=user8_id).first()
     user9 = User.query.filter_by(username=user9_id).first()
     user10 = User.query.filter_by(username=user10_id).first()
+    user11 = User.query.filter_by(username=user11_id).first()
 
 
     user1.following.append(user2)
@@ -45,6 +47,7 @@ def seed_follows():
     user8.following.append(user10)
     user9.following.append(user4)
     user10.following.append(user5)
+    user11.following.append(user1)
 
     db.session.commit()
 

@@ -51,25 +51,25 @@ def seed_posts():
     post21 = Post(
         content="The Allure of Vintage Cars: A Drive Down Memory Lane", user_id=11, post_date=datetime_formatted)
     post22 = Post(
-        content="Why did the bicycle fall over? It was two-tired!", user_id=12, post_date=datetime_formatted)
+        content="Why did the bicycle fall over? It was two-tired!", user_id=2, post_date=datetime_formatted)
     post23 = Post(
-        content="The Magic of Animation: Bringing Stories to Life", user_id=12, post_date=datetime_formatted)
+        content="The Magic of Animation: Bringing Stories to Life", user_id=2, post_date=datetime_formatted)
     post24 = Post(
-        content="The Science of Sleep: Unlocking the Secrets of Dreams", user_id=13, post_date=datetime_formatted)
+        content="The Science of Sleep: Unlocking the Secrets of Dreams", user_id=3, post_date=datetime_formatted)
     post25 = Post(
-        content="Why did the tomato turn red? Because it saw the salad dressing!", user_id=13, post_date=datetime_formatted)
+        content="Why did the tomato turn red? Because it saw the salad dressing!", user_id=3, post_date=datetime_formatted)
     post26 = Post(
-        content="The Legacy of Ancient Civilizations: From Pyramids to Temples", user_id=14, post_date=datetime_formatted)
+        content="The Legacy of Ancient Civilizations: From Pyramids to Temples", user_id=1, post_date=datetime_formatted)
     post27 = Post(
-        content="Why don't scientists trust atoms? Because they make up everything!", user_id=14, post_date=datetime_formatted)
+        content="Why don't scientists trust atoms? Because they make up everything!", user_id=4, post_date=datetime_formatted)
     post28 = Post(
-        content="The Power of Photography: Capturing Moments in Time", user_id=15, post_date=datetime_formatted)
+        content="The Power of Photography: Capturing Moments in Time", user_id=5, post_date=datetime_formatted)
     post29 = Post(
-        content="Why did the golfer bring two pairs of pants? In case he got a hole in one!", user_id=15, post_date=datetime_formatted)
+        content="Why did the golfer bring two pairs of pants? In case he got a hole in one!", user_id=5, post_date=datetime_formatted)
     post30 = Post(
-        content="The Beauty of Ballet: Grace in Motion", user_id=16, post_date=datetime_formatted)
+        content="The Beauty of Ballet: Grace in Motion", user_id=6, post_date=datetime_formatted)
     post31 = Post(
-        content="Getting ready for my big fight with Musky Musk!", user_id=17, post_date = datetime_formatted,)
+        content="Getting ready for my big fight with Musky Musk!", user_id=7, post_date = datetime_formatted,)
 
     posts = [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, post16, post17, post18, post19, post20, post21, post22, post23, post24, post25, post26, post27, post28, post29, post30, post31]
     add_posts = [db.session.add(post) for post in posts]
