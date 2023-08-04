@@ -5,7 +5,7 @@ import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../sto
 import LikeButton from "./Button";
 
 
-const Likes = ({ post}) => {
+const Likes = ({ post }) => {
     const dispatch = useDispatch();
     const userLikes = useSelector((state) => state.likes.userLikes);
     const loggedInUserId = useSelector((state) => state.session.user && state.session.user.id);
@@ -28,18 +28,18 @@ const Likes = ({ post}) => {
         return userLikes.some((like) => like.post_id === post.id);
     };
 
-    const handleLike = async () =>  {
+    const handleLike = async () => {
         console.log(isUserLiked())
         if (isUserLiked()) {
-            dispatch(thunkRemoveLike(likeId));
-            dispatch(fetchFollowingPosts());
-            dispatch(fetchAllPosts());
+            await dispatch(thunkRemoveLike(likeId));
+            await dispatch(fetchFollowingPosts());
+            await dispatch(fetchAllPosts());
         } else {
             const data = await dispatch(thunkAddLike(post.id));
             setLikeId(data.id)
-            dispatch(fetchUserLikes(loggedInUserId));
-            dispatch(fetchFollowingPosts());
-            dispatch(fetchAllPosts());
+            await dispatch(fetchUserLikes(loggedInUserId));
+            await dispatch(fetchFollowingPosts());
+            await dispatch(fetchAllPosts());
         }
     };
 
