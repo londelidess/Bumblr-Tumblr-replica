@@ -105,7 +105,7 @@ const PostIndex = () => {
                 (
                     <div className='landing-page-div'>
                         <div className='tumblr-title'>
-                            <h1>tumblr</h1>
+                            <h1>Bumblr</h1>
                         </div>
                         <div className='tumblr-description'>
                             <p>Express yourself through visuals, words, and multimedia on Tumblr. Join a diverse community where your passions come to life.</p>
@@ -118,7 +118,7 @@ const PostIndex = () => {
                                 modalComponent={<LoginFormModal />}
                             />
                             <OpenModalButton
-                                className="home-button"
+                                className="get-started"
                                 buttonText="Sign Up"
                                 // onItemClick={closeMenu}
                                 modalComponent={<SignupFormModal />}
