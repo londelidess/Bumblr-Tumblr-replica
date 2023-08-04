@@ -13,7 +13,29 @@
     padding-top: 40px;
     height: auto;
     gap: 40px;
+}
 
+.landing-page-div {
+    display: flex;
+    flex-direction: column;
+    width: 614px;
+    padding-top: 40px;
+    height: auto;
+    gap: 40px;
+}
+
+.login-and-signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-button {
+    /* border: 1px red solid; */
+    height: 50px;
+    margin-bottom: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-size: large;
 }
 
 .posts_option_tab {

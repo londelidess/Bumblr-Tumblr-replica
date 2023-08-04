@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllPosts, fetchFollowingPosts, getFollowingPosts } from '../../store/post';
 import { fetchUserLikes } from '../../store/like';
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 
 import { useEffect } from 'react';
@@ -72,7 +75,7 @@ const PostIndex = () => {
 
             </div>
 
-            {displayOption === "show_foryou" &&
+            {currentUser && displayOption === "show_foryou" &&
                 (
                     <div className='post-index-all'>
                         {allPosts.map((post, index) => (
@@ -85,7 +88,7 @@ const PostIndex = () => {
                 )
             }
 
-            {displayOption === "show_following" &&
+            {currentUser && displayOption === "show_following" &&
                 (
                     <div className='post-index-all'>
                         {followingPosts.map((post, index) => (
@@ -100,13 +103,27 @@ const PostIndex = () => {
 
             {!currentUser &&
                 (
-                    <div className='post-index-all'>
-                        {allPosts.map((post, index) => (
-                            <PostIndexItem
-                                post={post}
-                                key={index}
+                    <div className='landing-page-div'>
+                        <div className='tumblr-title'>
+                            <h1>tumblr</h1>
+                        </div>
+                        <div className='tumblr-description'>
+                            <p>Express yourself through visuals, words, and multimedia on Tumblr. Join a diverse community where your passions come to life.</p>
+                        </div>
+                        <div className='login-and-signup'>
+                            <OpenModalButton
+                                className="home-button"
+                                buttonText="Log In"
+                                // onItemClick={closeMenu}
+                                modalComponent={<LoginFormModal />}
                             />
-                        ))}
+                            <OpenModalButton
+                                className="home-button"
+                                buttonText="Sign Up"
+                                // onItemClick={closeMenu}
+                                modalComponent={<SignupFormModal />}
+                            />
+                        </div>
                     </div>
                 )
             }
