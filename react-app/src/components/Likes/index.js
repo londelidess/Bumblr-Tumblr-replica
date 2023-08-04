@@ -29,7 +29,6 @@ const Likes = ({ post }) => {
     };
 
     const handleLike = async () => {
-        console.log(isUserLiked())
         if (isUserLiked()) {
             await dispatch(thunkRemoveLike(likeId));
             await dispatch(fetchFollowingPosts());
@@ -44,8 +43,12 @@ const Likes = ({ post }) => {
     };
 
     return (
-        <div className="likes-container">
-            <LikeButton isLiked={isUserLiked()} onLike={handleLike} />
+        <div>
+            {loggedInUserId && (
+                <div className="likes-container">
+                    <LikeButton isLiked={isUserLiked()} onLike={handleLike} />
+                </div>
+            )}
         </div>
     );
 };

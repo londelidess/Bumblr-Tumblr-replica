@@ -12,10 +12,10 @@ const LikeButton = ({ isLiked, onLike }) => {
     }, [isLiked]);
 
     const handleClick = () => {
-        setLiked((prevLiked) => !prevLiked); // Toggle the liked state
-        setIconColor((prevColor) => (prevColor === "red" ? "black" : "red")); // Toggle the icon color
+        setLiked((prevLiked) => !prevLiked); 
+        setIconColor((prevColor) => (prevColor === "red" ? "black" : "red"));
 
-        onLike(); // Call the onLike function to handle the like/unlike logic in the parent component
+        onLike();
     };
 
     return (

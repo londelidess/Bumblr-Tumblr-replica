@@ -18,11 +18,13 @@ function FollowsList() {
         return loggedInUserFollowing.some((followedUser) => followedUser.id === userId);
     };
 
-    const handleFollow = (userId) => {
+    const handleFollow = (e, userId) => {
+        e.preventdefault()
         dispatch(thunkAddFollow(userId));
     };
 
-    const handleUnfollow = (userId) => {
+    const handleUnfollow = (e, userId) => {
+        e.preventdefault()
         dispatch(thunkRemoveFollow(userId));
     };
 
@@ -39,9 +41,9 @@ function FollowsList() {
                         <span className="follow-user">{user.username}</span>
                         {loggedInUserId !== user.id && (
                             isUserFollowing(user.id) ? (
-                                <button onClick={() => handleUnfollow(user.id)}>Unfollow</button>
+                                <button onClick={(e) => handleUnfollow(e, user.id)}>Unfollow</button>
                             ) : (
-                                <button onClick={() => handleFollow(user.id)}>Follow</button>
+                                <button onClick={(e) => handleFollow(e, user.id)}>Follow</button>
                             )
                         )}
                     </div>

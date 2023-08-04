@@ -23,7 +23,7 @@ const UserLikes = () => {
     const likePosts = allPosts.filter(post => likePostIds.includes(post.id));
     const dispatch = useDispatch();
     const [displayOption, setDisplayOption] = useState("show_following");
- 
+
     likePosts.sort((post1, post2) => {
         const a = new Date(post1.postDate);
         const b = new Date(post2.postDate);
@@ -38,13 +38,13 @@ const UserLikes = () => {
         setDisplayOption("show_following")
     }
 
-    useEffect(() => {
+    useEffect( async () => {
         dispatch(fetchAllPosts());
         if (currentUser) {
             try {
-                dispatch(fetchLoggedInUserFollowing());
-                dispatch(fetchFollowingPosts());
-                dispatch(fetchUserLikes(currentUser.id));
+                await dispatch(fetchLoggedInUserFollowing());
+                await dispatch(fetchFollowingPosts());
+                await dispatch(fetchUserLikes(currentUser.id));
             } catch (e) {
                 return
             }
@@ -76,7 +76,7 @@ const UserLikes = () => {
                     </div>
                 )
             }
-     
+
         </div>
     );
 };
