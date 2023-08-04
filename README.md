@@ -258,7 +258,6 @@ Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
   - **Error Handling**: Providing clear error messages to the user in cases of failed uploads or unsupported file formats.
 
 
-By expanding on the challenges and considerations for each feature, especially the media upload and post creation, the documentation gives a clearer picture of the complexities involved. Adjust the specifics to better match your project's details and challenges.
 
 
 [def]: ./images/Bumblr-login.png
