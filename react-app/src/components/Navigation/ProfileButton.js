@@ -97,7 +97,7 @@ function ProfileButton({ user }) {
                 modalComponent={<LoginFormModal />}
               />
             </div>
-            <div className="sign up Modal">
+            <div className="sign-up-modal">
               <OpenModalButton
                 className="signup-modal-button"
                 buttonText="Sign Up"
