@@ -4,7 +4,8 @@
 ![homepage][def]
 ![homepage2][def2]
 
-## Link to website `https://group-social-network-service.onrender.com`
+## Link to website 
+https://group-social-network-service.onrender.com
 
 Bumblr Overview
 Bumblr is a social platform, inspired by Tumblr, which allows users to create posts, comment on them, like posts, and follow other users.
