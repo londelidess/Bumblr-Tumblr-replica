@@ -248,7 +248,7 @@ store = {
 
 
 ## Technology we used 
-Flask/ React/ Redux/ sqlAlchemy/ postgresql/ AWS S3
+Flask/ React/ Redux/ sqlAlchemy/ postgreSQL/ AWS S3
 
 ## Development Challenges:
 
