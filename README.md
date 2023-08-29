@@ -1,13 +1,13 @@
 # `Bumblr <social-network-service>`
 
 ## INTRODUCTION
+Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other. This is a group project at aA Academy created by Brandon Vang, Jimmy Xu, Richard Lee,  Makoto Doi. 
+
 ![homepage][def]
 ![homepage2][def2]
 
 ## Link to website 
 https://bv-group-project.onrender.com
-
-Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other.
 
 ## Feature List
 ## 1. New account creation, log in, log out, and guest/demo log in
@@ -256,6 +256,30 @@ Flask/ React/ Redux/ sqlAlchemy/ postgreSQL/ AWS S3
   - **Redux**: Maintaining the state of the media being uploaded, especially when dealing with multiple file uploads, and reflecting that in the global state was a challenge.
   - **Flask Integration**: Making sure that the uploaded files are processed and stored correctly on the Flask backend.
   - **Error Handling**: Providing clear error messages to the user in cases of failed uploads or unsupported file formats.
+
+## Profiles
+BrandonVang
+linkedin: https://www.linkedin.com/in/brandon-vang-a80518171/
+GitHub: https://github.com/BrandonVang
+email: vang.brandon94@gmail.com
+        
+Jimmy Xu
+LinkedIn: https://www.linkedin.com/in/ccnuxuji/
+GitHub: "https://github.com/ccnuxuji"
+email: ccnuxuji@gmail.com"
+    
+Richard Lee
+LinkedIn: 'https://www.linkedin.com/in/richard-lee-335389236/'
+GitHub: "https://github.com/RichyLee95"
+email: "richylee95@gmail.com"
+
+
+Makoto Doi
+LinkedIn: https://www.linkedin.com/in/makoto-doi/
+github: https://github.com/londelidess
+email: d.makoto0701@yahoo.com
+   
+
 
 
 
