@@ -164,8 +164,10 @@ https://bv-group-project.onrender.com
 ##  React Components
 ./CreateBar/   ./DeleteConfirmModal/  ./Footer/          ./Likes/           ./LoginFormPage/  ./OpenModalButton/  ./SignupFormModal/  ./auth/
 ./CreatePost/  ./Follows/             ./IconCollection/  ./LoginFormModal/  ./Navigation/     ./PostIndex/        ./SignupFormPage/
+
 ##  Redux Store Shape
-```store = {
+```
+store = {
   session: {},
   posts: {
      allPosts: {},
@@ -188,7 +190,8 @@ https://bv-group-project.onrender.com
     loggedInUserFollowing: [],
     userFollowing: []
   },
-};```
+};
+```
 
 
 ## Front-end Routes Documentation
