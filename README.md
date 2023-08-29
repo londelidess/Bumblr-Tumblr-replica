@@ -258,31 +258,27 @@ Flask/ React/ Redux/ sqlAlchemy/ postgreSQL/ AWS S3
   - **Error Handling**: Providing clear error messages to the user in cases of failed uploads or unsupported file formats.
 
 ## Profiles
-BrandonVang
-linkedin: https://www.linkedin.com/in/brandon-vang-a80518171/
-GitHub: https://github.com/BrandonVang
-email: vang.brandon94@gmail.com
+BrandonVang;
+linkedin: 'https://www.linkedin.com/in/brandon-vang-a80518171/',
+GitHub: 'https://github.com/BrandonVang',
+email: 'vang.brandon94@gmail.com',
         
-Jimmy Xu
-LinkedIn: https://www.linkedin.com/in/ccnuxuji/
-GitHub: "https://github.com/ccnuxuji"
-email: ccnuxuji@gmail.com"
+Jimmy Xu;
+LinkedIn: 'https://www.linkedin.com/in/ccnuxuji/',
+GitHub: 'https://github.com/ccnuxuji',
+email: 'ccnuxuji@gmail.com',
     
-Richard Lee
-LinkedIn: 'https://www.linkedin.com/in/richard-lee-335389236/'
-GitHub: "https://github.com/RichyLee95"
-email: "richylee95@gmail.com"
+Richard Lee;
+LinkedIn: 'https://www.linkedin.com/in/richard-lee-335389236/',
+GitHub: 'https://github.com/RichyLee95',
+email: 'richylee95@gmail.com',
 
 
-Makoto Doi
-LinkedIn: https://www.linkedin.com/in/makoto-doi/
-github: https://github.com/londelidess
-email: d.makoto0701@yahoo.com
+Makoto Doi;
+LinkedIn: 'https://www.linkedin.com/in/makoto-doi/',
+GitHub: 'https://github.com/londelidess',
+email: 'd.makoto0701@yahoo.com',
    
-
-
-
-
 
 [def]: ./images/Bumblr-login.png
 [def2]:./images/Bumblr-main.png
