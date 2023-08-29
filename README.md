@@ -165,16 +165,14 @@ https://bv-group-project.onrender.com
 ./CreateBar/   ./DeleteConfirmModal/  ./Footer/          ./Likes/           ./LoginFormPage/  ./OpenModalButton/  ./SignupFormModal/  ./auth/
 ./CreatePost/  ./Follows/             ./IconCollection/  ./LoginFormModal/  ./Navigation/     ./PostIndex/        ./SignupFormPage/
 ##  Redux Store Shape
-store = {
+```store = {
   session: {},
   posts: {
      allPosts: {},
      currentPost:{},
      singlePost: {},
   },
-
   comments: {
-   
     post: {
      postData
     },
@@ -190,7 +188,7 @@ store = {
     loggedInUserFollowing: [],
     userFollowing: []
   },
-};
+};```
 
 
 ## Front-end Routes Documentation
@@ -259,7 +257,7 @@ Flask/ React/ Redux/ sqlAlchemy/ postgreSQL/ AWS S3
 
 ## Profiles
 BrandonVang;
-linkedin: 'https://www.linkedin.com/in/brandon-vang-a80518171/',
+LinkedIn: 'https://www.linkedin.com/in/brandon-vang-a80518171/',
 GitHub: 'https://github.com/BrandonVang',
 email: 'vang.brandon94@gmail.com',
         
