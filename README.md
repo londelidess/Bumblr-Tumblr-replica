@@ -191,7 +191,6 @@ store = {
     userFollowing: []
   },
 };
-```
 
 
 ## Front-end Routes Documentation
