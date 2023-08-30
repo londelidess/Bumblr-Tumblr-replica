@@ -21,6 +21,25 @@ def all_posts():
   print(response_posts)
   return {"posts": response_posts }
 
+@post_routes.route("/search")
+def search_posts():
+  '''
+  get all posts
+  '''
+  # get the parameters from the routes
+  # all_posts = Post.query.order_by(Post.post_date.desc()).all()
+  keyword = request.args.get('keyword'); 
+  print(keyword)
+  if not keyword:    
+        return "Please provide a keyword for search."
+
+  search_posts = Post.query.filter(
+        (Post.content.like(f"%{keyword}%"))
+    ).all()
+  response_posts = [post.to_dict() for post in search_posts]
+  print(response_posts)
+  return {"posts": response_posts }
+
 
 @post_routes.route("/current")
 @login_required

@@ -11,6 +11,7 @@ import UserLikes from "./components/PostIndex/UserLikes"
 import UserCurrent from "./components/PostIndex/UserCurrent"
 
 import CreateMediaForm from "./components/CreatePost/PostMedia"
+import Search from "./components/PostIndex/Search";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/likes" component={UserLikes} />
           <Route exact path="/following" component={FollowsList} />
           <Route exact path="/current" component={UserCurrent} />
+          <Route exact path="/search" component={Search} />
           <Route exact path="/NewMedia" component={CreateMediaForm} />
           <Route path="/login" >
             <LoginFormPage />

@@ -38,7 +38,7 @@ const PostIndexItem = ({ post, fromPath }) => {
     const [error, setError] = useState("");
 
 
-    post.comments.sort((comment1, comment2) => {
+    post?.comments?.sort((comment1, comment2) => {
         const a = new Date(comment1.post_date);
         const b = new Date(comment2.post_date);
         return b - a;
@@ -67,14 +67,14 @@ const PostIndexItem = ({ post, fromPath }) => {
     };
 
     const isUserFollowing = (userId) => {
-        return loggedInUserFollowing.some((followedUser) => followedUser.id === userId);
+        return loggedInUserFollowing.some((followedUser) => followedUser?.id === userId);
     };
 
     // Check if it's the user's own post
-    const isOwnPost = post.user.id === loggedInUserId;
+    const isOwnPost = post.user?.id === loggedInUserId;
 
     // Check if the logged-in user is following the user of the post
-    const isCurrentUserFollowingPostUser = isUserFollowing(post.user.id);
+    const isCurrentUserFollowingPostUser = isUserFollowing(post.user?.id);
 
     const showCommentTab = () => {
         setCommentAreaOption("show_comments")
@@ -118,7 +118,9 @@ const PostIndexItem = ({ post, fromPath }) => {
     }
 
     useEffect(() => {
-        dispatch(fetchPostLikes(post.id));
+        if (post.id) {
+            dispatch(fetchPostLikes(post.id));
+        }
     }, [dispatch]);
 
     return (
@@ -130,12 +132,12 @@ const PostIndexItem = ({ post, fromPath }) => {
             <div className="post-index-item">
                 <Link className='postItem-title-bar' to='/'>
                     <div className='post-user-follow'>
-                        <span className='title-bar-username'>{post.user.username}</span>
+                        <span className='title-bar-username'>{post.user?.username}</span>
                         {currentUser && !isOwnPost && !isCurrentUserFollowingPostUser && (
-                            <button className='follow-but' onClick={() => handleFollow(post.user.id)}>Follow</button>
+                            <button className='follow-but' onClick={() => handleFollow(post.user?.id)}>Follow</button>
                         )}
                         {currentUser && !isOwnPost && isCurrentUserFollowingPostUser && (
-                            <button className='unfollow-but' onClick={() => handleUnfollow(post.user.id)}>Unfollow</button>
+                            <button className='unfollow-but' onClick={() => handleUnfollow(post.user?.id)}>Unfollow</button>
                         )}
                     </div>
                     <div className='post-index-item-menu'>
@@ -145,7 +147,7 @@ const PostIndexItem = ({ post, fromPath }) => {
 
                 <div className=''>
                     <div className='postItem-img-wrapper'>
-                        {post.medias.map((item, index) => (
+                        {post.medias?.map((item, index) => (
                             <div className='postItem-img' key={index}>
                                 {item.media_url.endsWith("mp4") &&
                                     (
@@ -165,7 +167,7 @@ const PostIndexItem = ({ post, fromPath }) => {
                     </div>
                 </div>
 
-                {currentUser && currentUser.id === post.user.id &&
+                {currentUser && currentUser.id === post.user?.id &&
                     (
                         <div className='postitem-delete-edit-wrapper'>
                             <OpenModalMenuItem
@@ -190,13 +192,13 @@ const PostIndexItem = ({ post, fromPath }) => {
                         <span className='tail-bar-notes' onClick={toggleShowCommentArea}>{post.likes_count + post.comments_count} notes</span>
                     </div>
                     <div className='post-index-item-icons'>
-                         {/* <button className='unused-but' onClick={handleReserveClick}>
+                        {/* <button className='unused-but' onClick={handleReserveClick}>
                             <SharingIcon />
                         </button> */}
                         <button className='unused-but' onClick={toggleShowCommentArea}>
                             <CommentIcon />
                         </button>
-                         {/* <button className='unused-but' onClick={handleReserveClick}>
+                        {/* <button className='unused-but' onClick={handleReserveClick}>
                             <RePostIcon />
                         </button> */}
                         <Likes post={post} />
