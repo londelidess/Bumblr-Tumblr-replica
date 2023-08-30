@@ -7,6 +7,7 @@ const REMOVE_POST = "posts/REMOVE_POST";
 const SET_POST = "posts/SET_POST";
 const UPDATE_POST = "posts/UPDATE_POST";
 const SET_CURRENT_POSTS = "posts/SET_CURRENT_POSTS";
+const SET_SEARCH_POSTS = "posts/SET_SEARCH_POSTS";
 const SET_FOLLOWING_POSTS = "posts/SET_FOLLOWING_POSTS";
 
 // Action Creators
@@ -22,6 +23,11 @@ const setPost = (post) => ({
 
 const setCurrentPosts = (posts) => ({
   type: SET_CURRENT_POSTS,
+  posts,
+});
+
+const setSearchPosts = (posts) => ({
+  type: SET_SEARCH_POSTS,
   posts,
 });
 
@@ -58,6 +64,14 @@ export const fetchCurrentPosts = () => async (dispatch) => {
   if (response.ok) {
     const { posts } = await response.json();
     return dispatch(setCurrentPosts(posts));
+  }
+};
+
+export const fetchSearchPosts = (keword) => async (dispatch) => {
+  const response = await fetch(`/api/posts/search?keyword=${keword}`);
+  if (response.ok) {
+    const { posts } = await response.json();
+    await dispatch(setSearchPosts(posts));
   }
 };
 
@@ -134,6 +148,7 @@ export const thunkDeletePostById = (post) => async (dispatch) => {
 const initialState = {
   allPosts: {},
   currentPosts: {},
+  searchPosts: {},
   singlePost: {},
   followingPosts: {},
 };
@@ -143,6 +158,9 @@ export const getPost = (state) => Object.values(state.posts.allPosts);
 
 export const getCurrentPosts = (state) =>
   Object.values(state.posts.currentPosts);
+
+  export const getSearchPosts = (state) =>
+  Object.values(state.posts.searchPosts);
 
 export const getFollowingPosts = (state) =>
   Object.values(state.posts.followingPosts);
@@ -171,6 +189,12 @@ export default function postsReducer(state = initialState, action) {
         ...state,
         currentPosts: currentPostsState,
       };
+      case SET_SEARCH_POSTS:
+        let searchPostsState = { ...state, searchPosts: {} };
+        action.posts.forEach((post) => {
+          searchPostsState.searchPosts[post.id] = post;
+        });
+        return searchPostsState
     case SET_FOLLOWING_POSTS:
       let followingPostsState = { ...state, followingPosts: {} };
       action.posts.forEach((post) => {

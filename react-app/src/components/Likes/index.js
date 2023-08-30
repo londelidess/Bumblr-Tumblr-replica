@@ -13,7 +13,7 @@ const Likes = ({ post }) => {
 
 
     let originalLikeId = null
-    post.likes.forEach(like => {
+    post.likes?.forEach(like => {
         if (like.user_id === loggedInUserId) {
             originalLikeId = like.id
         }
@@ -31,7 +31,7 @@ const Likes = ({ post }) => {
     const handleLike = async () => {
         if (isUserLiked()) {
             await dispatch(thunkRemoveLike(likeId));
-            await dispatch(fetchUserLikes(loggedInUserId));
+            if (loggedInUserId) {await dispatch(fetchUserLikes(loggedInUserId))};
             await dispatch(fetchFollowingPosts());
             await dispatch(fetchAllPosts());
         } else {

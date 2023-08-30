@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import logo from '../../images/logo.png'
+import { fetchSearchPosts } from '../../store/post';
+import { useHistory } from 'react-router-dom';
 
 function Navigation({ isLoaded }) {
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
 	const [searchInput, setSearchInput] = useState('');
 
 
-	const handleReserveClick = () => {
-		alert('Feature coming soon');
+	const handleSearchClick = async (e) => {
+		e.preventDefault();
+		dispatch(fetchSearchPosts(searchInput)).then(history.push("/search"))
 	};
 
 	const handleSearchChange = (e) => {
@@ -33,7 +38,7 @@ function Navigation({ isLoaded }) {
 					<img className="logo" src={logo} alt="Home" />
 				</NavLink>
 
-				<form className="search-bar" onSubmit={handleReserveClick}>
+				<form className="search-bar" onSubmit={handleSearchClick}>
 					<input
 						type="text"
 						value={searchInput}
