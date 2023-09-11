@@ -30,6 +30,10 @@
   padding-left: 10px;
 }
 
+.nav-container > *:last-child {
+  margin-right: 20px;
+}
+
 body {
   padding-top: 60px;
 }
@@ -132,6 +136,7 @@ body {
   background-image: linear-gradient(to right, #00cf35, #39ff14);
 
   cursor: pointer;
+  /* margin-right: 20px; */
 }
 
 .login-modal,
@@ -181,7 +186,7 @@ body {
   cursor: pointer;
   width: 50px;
   height: 20px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .fas.fa-pencil-alt.fa-lg:hover {

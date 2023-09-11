@@ -7,7 +7,7 @@ import { fetchUserLikes } from '../../store/like';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-
+import RingLoader from "react-spinners/RingLoader";
 
 import { useEffect } from 'react';
 import './PostIndex.css';
@@ -17,6 +17,13 @@ import About from '../Footer/index';
 
 const getPost = (state) => Object.values(state.posts.allPosts);
 
+const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+
+
 const PostIndex = () => {
     const getCurrentUser = (state) => state.session.user;
     const currentUser = useSelector(getCurrentUser);
@@ -25,6 +32,7 @@ const PostIndex = () => {
     const allPosts = useSelector(getPost);
     const followingPosts = useSelector(getFollowingPosts);
     const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(true);
     const [displayOption, setDisplayOption] = useState("show_following");
     followingPosts.sort((post1, post2) => {
         const a = new Date(post1.postDate);
@@ -46,18 +54,31 @@ const PostIndex = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchAllPosts());
-        if (currentUser) {
-            try {
-                dispatch(fetchLoggedInUserFollowing());
-                dispatch(fetchFollowingPosts());
-                dispatch(fetchUserLikes(currentUser.id));
-            } catch (e) {
-                return
+        const fetchData = async () => {
+            setIsLoading(true);
+            await dispatch(fetchAllPosts());
+            if (currentUser) {
+                try {
+                    await dispatch(fetchLoggedInUserFollowing());
+                    await dispatch(fetchFollowingPosts());
+                    await dispatch(fetchUserLikes(currentUser.id));
+                } catch (e) {
+                    console.error("Error fetching data:", e);
+                }
             }
-        }
+            setIsLoading(false);
+        };
+
+        fetchData();
     }, [dispatch, currentUser]);
 
+    if (isLoading) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <RingLoader color="#ffffff" size={150} />
+            </div>  
+        );
+    }
 
     return (
         <div className='home-wrapper'>
