@@ -132,7 +132,8 @@
 .create-bar-button .fa-headphones:hover,
 .create-bar-button .fa-comment:hover,
 .create-bar-button .fa-link:hover,
-.create-bar-button .fa-quote-left:hover {
+.create-bar-button .fa-quote-left:hover,
+.create-bar-button .fa-video:hover {
     animation: jump 1s ease-in-out;
 }
 
