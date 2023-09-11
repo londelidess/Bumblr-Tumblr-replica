@@ -64,6 +64,7 @@ const Search = () => {
             { currentUser &&
                 (
                     <div className='post-index-all'>
+                        {allPosts?.length === 0 && <h3 className='no_search_result'>No result found! Please try something else...</h3>}
                         {allPosts.map((post, index) => (
                             <PostIndexItem
                                 post={post}

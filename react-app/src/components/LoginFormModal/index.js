@@ -62,7 +62,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" className="login_button">Log In</button>
         <p className="demo-link" onClick={handleDemoLogin}>
           Demo User
         </p>

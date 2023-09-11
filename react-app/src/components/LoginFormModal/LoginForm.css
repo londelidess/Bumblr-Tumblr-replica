@@ -2,3 +2,16 @@
     color: red;
     list-style-type: none;
 }
+
+.demo-link {
+    cursor: pointer;
+}
+
+.login_button {
+    cursor: pointer;
+}
+
+.login_button:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}

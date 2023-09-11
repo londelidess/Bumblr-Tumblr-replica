@@ -5,6 +5,7 @@ import { thunkCreatePost,fetchAllPosts } from '../../store/post';
 import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
 import "./CreatePostForm.css"
+
 const CreatePostForm = () => {
     const [content, setContent] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);

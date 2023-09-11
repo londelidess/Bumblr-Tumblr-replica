@@ -5,6 +5,9 @@ import { fetchAllPosts, thunkEditPost, fetchFollowingPosts, fetchPostById } from
 import { thunkAddMediaToPost, thunkDeleteMedia } from '../../store/media';
 import { useModal } from '../../context/Modal';
 import DeleteIcon from '../IconCollection/DeleteIcon';
+// import "./CreatePostForm.css"
+
+
 const EditPostForm = ({ post }) => {
     const [content, setContent] = useState(post.content);
     const [media_file, setMedia_file] = useState('');

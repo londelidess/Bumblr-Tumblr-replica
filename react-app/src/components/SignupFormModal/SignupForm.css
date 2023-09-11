@@ -7,6 +7,11 @@
     width: 400px;
 }
 
+.signup_button:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
 .sign-win form {
     display: flex;
     flex-direction: column;

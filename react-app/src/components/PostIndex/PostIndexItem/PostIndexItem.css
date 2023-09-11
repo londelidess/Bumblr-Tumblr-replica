@@ -210,6 +210,7 @@
     font-size: 16px;
     color: #1E90FF;
     border-radius: 5px;
+    height: 35px;
     outline: none;
     transition: border-color 0.3s ease;
 }
