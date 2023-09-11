@@ -1,7 +1,7 @@
 # `Bumblr <social-network-service>`
 
 ## INTRODUCTION
-Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other. This is a group project at aA Academy created by Brandon Vang, Jimmy Xu, Richard Lee,  Makoto Doi. 
+Bumblr, a Tumblr replica, is a platform where users can share posts, engage in discussions through comments, express their appreciation via likes, and connect by following each other. This is a group project at aA Academy created by Brandon Vang, Jimmy Xu, Richard Lee, and Makoto Doi. 
 
 ![homepage][def]
 ![homepage2][def2]
@@ -15,8 +15,8 @@ https://bv-group-project.onrender.com
 * Users can sign up, log in, and log out.
 * Users can use a demo login to try the site.
 * Users can't use certain features without logging in (like posting, commenting, liking, and following).
-* Logged in users are directed to their profile page which displays their posts and details.
-* Logged out users are directed to a landing page showcasing trending or recent posts.
+* Logged-in users are directed to their profile page which displays their posts and details.
+* Logged-out users are directed to a landing page showcasing trending or recent posts.
 
 ## 2. Posts
 
@@ -24,7 +24,8 @@ https://bv-group-project.onrender.com
 * Posts can contain text or images.
 * Each post displays its author, content, timestamp, and associated likes.
 * Users can navigate to a detailed view of a post which includes its comments.
-* The main feed displays posts from all users or just from those a user follows, by changing tab.
+* The main feed displays posts from all users or just from those a user follows, by changing the tab.
+* User can see Notes counts as the combination of Likes and Comments for each post.
 
 ## 3. Comments
 
@@ -191,7 +192,7 @@ store = {
     userFollowing: []
   },
 };
-
+```
 
 ## Front-end Routes Documentation
 
