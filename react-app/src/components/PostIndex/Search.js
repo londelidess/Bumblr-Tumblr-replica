@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import PostIndexItem from "./PostIndexItem";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllPosts,
@@ -13,7 +13,14 @@ import About from "../Footer";
 import "./PostIndex.css";
 import CreateBar from "../CreateBar";
 import { fetchLoggedInUserFollowing } from "../../store/follow";
-import ReactLoading from "react-loading";
+import RingLoader from "react-spinners/RingLoader";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
+
 
 const Search = () => {
   const getCurrentUser = (state) => state.session.user;
@@ -60,13 +67,13 @@ const Search = () => {
 
   return (
     <div className="home-wrapper">
-      {isLoading ? (
+    {isLoading ? (
         <div style={{ marginTop: "50px" }}>
-          <ReactLoading
-            type={"spinningBubbles"}
-            color={"#fff"}
-            height={"18%"}
-            width={"18%"}
+          <RingLoader
+            color="#ffffff"
+            loading={isLoading}
+            css={override}
+            size={150}
           />
         </div>
       ) : (
