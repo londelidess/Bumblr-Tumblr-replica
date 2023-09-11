@@ -15,6 +15,10 @@
     gap: 40px;
 }
 
+.no_search_result {
+    color: white;
+}
+
 .landing-page-div {
     display: flex;
     flex-direction: column;
@@ -33,6 +37,7 @@
 
 .home-button {
     /* border: 1px red solid; */
+    cursor: pointer;
     height: 50px;
     margin-bottom: 10px;
     margin-right: 20%;
@@ -58,6 +63,7 @@
 }
 
 .get-started {
+    cursor: pointer;
     height: 50px;
     width: 400px;
     margin-bottom: 10px;

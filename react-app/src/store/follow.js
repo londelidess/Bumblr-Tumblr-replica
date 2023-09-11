@@ -52,7 +52,6 @@ export const thunkAddFollow = (userId) => async (dispatch) => {
   const data = await response.json();
 
   if (response.ok) {
-    console.log(data.res);
     // dispatch(addFollow(data));
     dispatch(fetchLoggedInUserFollowing());
   } else {
@@ -65,7 +64,6 @@ export const thunkRemoveFollow = (userId) => async (dispatch) => {
   const data = await response.json();
 
   if (response.ok) {
-    console.log(data.res);
     // dispatch(removeFollow(userId));
     dispatch(fetchLoggedInUserFollowing());
   } else {

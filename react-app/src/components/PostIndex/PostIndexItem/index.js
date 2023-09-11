@@ -230,8 +230,10 @@ const PostIndexItem = ({ post, fromPath }) => {
                                         </div>
 
                                         {currentUser &&
-                                            (
+                                            (<div>
+                                                {error && <div><p className="comment-error">{error}</p></div>}
                                                 <form className='comment-form-container' onSubmit={handleCommentSubmit}>
+
                                                     <div className='comment-form-content'>
                                                         <input
                                                             className='comment-submit'
@@ -242,8 +244,9 @@ const PostIndexItem = ({ post, fromPath }) => {
                                                         />
                                                     </div>
                                                     <div><button className='comment-reply'>Reply</button></div>
-                                                    {error && <p className="comment-error">{error}</p>}
+
                                                 </form>
+                                            </div>
                                             )
                                         }
 
