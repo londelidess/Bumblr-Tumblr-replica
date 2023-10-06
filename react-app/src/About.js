@@ -8,7 +8,7 @@
     const profileLinks2 = {
         linkedin: 'https://www.linkedin.com/in/makoto-doi/',
         github: "https://github.com/londelidess",
-        email: "d.makoto0701@yahoo.com",
+        email: "makoto.doi0701@gmail.com",
     }
 
     const profileLinks3 = {
